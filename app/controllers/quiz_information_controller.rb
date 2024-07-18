@@ -1,10 +1,13 @@
 class QuizInformationController < ApplicationController
-  def host
+  def index
+  end
+
+  def home
   end
 
   def study
   end
 
-  def home
+  def host
   end
 end
