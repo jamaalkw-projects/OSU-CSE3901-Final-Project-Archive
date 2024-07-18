@@ -1,12 +1,12 @@
 <!-- home.html.erb - Project 6
      Created 07/16/24 by Jamaal Wairegi -->
-<% provide(:title, "Landing Page Home") %>
+<% provide(:title, "QuizGem") %>
 <h1> Welcome to QuizGem! </h1>
 <div>
     <h3> Sign Up: </h3>
-        <%=button_to "Go to sign up page", "/landing_page/home", method: :get %>
+        <%=button_to "Go to sign up page", "/landing_page/sign_up", method: :get %>
     <h3> Log In: </h3>
-        <%= form_with url: "/landing_page/home", method: :get do |form| %>
+        <%= form_with url: "/landing_page", method: :get do |form| %>
             <%= form.label :username, "Username:" %>
             <%= form.text_field :username %><br>
             <%= form.label :password, "Password:" %>
@@ -14,5 +14,5 @@
             <%= form.submit "Login" %>
         <% end %>
     <h3> Join a multiplayer game session: </h3>
-        <%=button_to "Go to join page", "/landing_page/home", method: :get %>
+        <%=button_to "Go to join page", "/landing_page/join_game", method: :get %>
 </div>

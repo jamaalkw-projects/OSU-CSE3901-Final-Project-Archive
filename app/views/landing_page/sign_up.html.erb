@@ -1,0 +1,17 @@
+<!-- sign_up.html.erb - Project 6
+     Created 07/17/24 by Jamaal Wairegi -->
+<% provide(:title, "Sign Up - QuizGem") %>
+<h1> Sign Up </h1>
+<div>
+        <%= form_with url: "/landing_page/sign_up", method: :get do |form| %>
+            <%= form.label :username, "Username:" %>
+            <%= form.text_field :username %><br>
+            <%= form.label :email, "Email:" %>
+            <%= form.text_field :email %><br>
+            <%= form.label :password, "Password:" %>
+            <%= form.text_field :password %><br>
+            <%= form.label :confirm, "Confirm Password:" %>
+            <%= form.text_field :confirm %><br>
+            <%= form.submit "Sign Up" %>
+        <% end %>
+</div>
