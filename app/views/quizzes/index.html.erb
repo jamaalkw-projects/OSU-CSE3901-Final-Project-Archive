@@ -2,6 +2,9 @@
 
 <% if @quizzes.length != 0 %>
   <p>All quizzes are below.</p>
+  <% @quizzes.each do |quiz| %>
+    <p><%= quiz.quiz_name %></p>
+  <% end %>
 <% else %>
   <p>No quizzes have been created yet.</p>
 <% end %>
