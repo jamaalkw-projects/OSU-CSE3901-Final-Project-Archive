@@ -1,4 +1,34 @@
 <%# Signup index.html.erb - Project 6 %>
 <%# Created 07/19/2024 by Samuel Colston %>
+<<<<<<< HEAD
 
 <%= render "nav"%>
+=======
+<!-- Edited 07/19/24 by Jamaal Wairegi: Added forms for sign up and login -->
+<h1>User Routing</h1>
+    <div>
+        <h3>Sign Up:</h3><br>
+        <!-- Will use POST method once Users model is set up -->
+        <%= form_with url: "/", method: :get do |form| %>
+            <%= form.label :username, "Username:" %>
+            <%= form.text_field :username %><br>
+            <%= form.label :email, "Email:" %>
+            <%= form.text_field :email %><br>
+            <%= form.label :password, "Password:" %>
+            <%= form.text_field :password %><br>
+            <%= form.label :confirm, "Confirm Password:" %>
+            <%= form.text_field :confirm %><br>
+            <%= form.submit "Sign Up" %>
+        <% end %>
+    </div>
+    <div>
+        <h3>Log In:</h3><br>
+        <%= form_with url: "/", method: :get do |form| %>
+            <%= form.label :username, "Username:" %>
+            <%= form.text_field :username %><br>
+            <%= form.label :password, "Password:" %>
+            <%= form.text_field :password %><br>
+            <%= form.submit "Log In" %>
+        <% end %>
+    </div>
+>>>>>>> refs/remotes/origin/signup-page
