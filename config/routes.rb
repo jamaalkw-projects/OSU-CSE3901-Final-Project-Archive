@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'signup#index'
 
-  get "/index", to: 'signup#index'
+  get "/signup", to: 'signup#index'
   devise_for :users
 end
