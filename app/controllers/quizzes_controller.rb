@@ -6,9 +6,11 @@ class QuizzesController < ApplicationController
   def new
     @quiz = Quiz.new
   end
+
   def show
     @quiz = Quiz.find(params[:id])
   end
+
   def create
     @quiz = Quiz.new(quiz_params)
 
@@ -23,9 +25,18 @@ class QuizzesController < ApplicationController
     @test = "hello"
   end
 
-  private
-    def quiz_params
-      params.require(:quiz).permit(:quiz_name)
+  def destroy
+    quiz = Quiz.find(params[:id])
+    if quiz.present?
+      quiz.destroy
     end
+    redirect_to root_path
+  end
+
+  private
+
+  def quiz_params
+    params.require(:quiz).permit(:quiz_name)
+  end
 
 end

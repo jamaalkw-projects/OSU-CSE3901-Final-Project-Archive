@@ -8,10 +8,10 @@
     </div>
   <% end %>
   <div>
-    <%= form.label :quiz_name, style: "padding-end: 0.1vw" %>
-    <%= form.text_field :quiz_name %>
+    <%= form.label :quiz_name, style: "padding-end: 0.1vw", :class => "form-label" %>
+    <%= form.text_field :quiz_name, :class => "form-control"  %>
   </div>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Create Quiz", :class => "btn btn-info text-white"  %>
   </div>
 <% end %>
