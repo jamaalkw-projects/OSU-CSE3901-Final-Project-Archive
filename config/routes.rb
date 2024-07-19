@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # Not defined yet
 
   # Landing page routes
-  get 'landing_page/', to: "landing_page#home"
-  get "landing_page/sign_up"
-  get "landing_page/join_game"
+  root "landing_page#index"
+  get "sign_up", to: "landing_page#sign_up"
+  get "join_game", to: "landing_page#join_game"
+
 end

@@ -8,7 +8,7 @@
 class LandingPageController < ApplicationController
   # Home page for landing. From here, you can sign up, log in, or 
   # join a multiplayer game through a link or code.
-  def home
+  def index
   end
 
   # Sign Up page

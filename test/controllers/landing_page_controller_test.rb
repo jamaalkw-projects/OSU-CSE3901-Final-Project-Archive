@@ -8,10 +8,10 @@ require "test_helper"
 # Edited 07/17/24 by Jamaal Wairegi: Added tests for Sign Up and Join Game pages
 class LandingPageControllerTest < ActionDispatch::IntegrationTest
   # Test 1 - Landing Home Page
-  test "should have a Home page" do
+  test "should have a Home page (the root)" do
     # routing
-    assert_routing "/landing_page", :controller => "landing_page", :action => "home"
-    get "/landing_page"
+    assert_routing "/", :controller => "landing_page", :action => "index"
+    get root_url
     assert_response :success
 
     # page content
@@ -23,8 +23,8 @@ class LandingPageControllerTest < ActionDispatch::IntegrationTest
   # Test 2 - Landing Sign Up Page
   test "should have a Sign In page" do
     # routing
-    assert_routing "/landing_page/sign_up", :controller => "landing_page", :action => "sign_up"
-    get "/landing_page/sign_up"
+    assert_routing "/sign_up", :controller => "landing_page", :action => "sign_up"
+    get "/sign_up"
     assert_response :success
 
     # page content
@@ -34,8 +34,8 @@ class LandingPageControllerTest < ActionDispatch::IntegrationTest
   # Test 3 - Landing Join Game Page
   test "should have a Join Game page" do
     # routing
-    assert_routing "/landing_page/join_game", :controller => "landing_page", :action => "join_game"
-    get "/landing_page/join_game"
+    assert_routing "/join_game", :controller => "landing_page", :action => "join_game"
+    get "/join_game"
     assert_response :success
 
     # page content

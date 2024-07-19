@@ -3,7 +3,7 @@
 <% provide(:title, "Sign Up - QuizGem") %>
 <h1> Sign Up </h1>
 <div>
-        <%= form_with url: "/landing_page/sign_up", method: :get do |form| %>
+        <%= form_with url: "/sign_up", method: :get do |form| %>
             <%= form.label :username, "Username:" %>
             <%= form.text_field :username %><br>
             <%= form.label :email, "Email:" %>
