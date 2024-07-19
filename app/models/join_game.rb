@@ -1,0 +1,2 @@
+class JoinGame < ApplicationRecord
+end

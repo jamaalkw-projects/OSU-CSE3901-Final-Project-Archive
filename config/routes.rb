@@ -1,3 +1,4 @@
+# Edited 07/19/24 by Jamaal Wairegi: Removed Landing Page routes
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,9 +9,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # Not defined yet
 
-  # Landing page routes
-  root "landing_page#index"
-  get "sign_up", to: "landing_page#sign_up"
-  get "join_game", to: "landing_page#join_game"
-
+  # Join game route
+  get "/join_game", to: "join_game#index"
 end
