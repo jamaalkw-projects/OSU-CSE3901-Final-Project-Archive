@@ -62,6 +62,19 @@ Jamaal Wairegi:
 - Create an HTML page and route for logging in–taking given credentials, verifying that it is in the database, and taking the user from the landing page to the home page.
 - Create an HTML page and route for the landing page–the page that unlogged in users will first see.
 
+Sirojiddin Aripov :
+-   Work on the Homepage and Quiz Creating Environment.
+-   Start work on Host Game page and
+
+-   Route from Homepage to Quiz Creation, Quiz Creation back to HomePage. Work with peers to route Host Game.
+
+-   Start setting up the Quiz Creating Environment.
+
+-   The environment for user to type in the name of a quiz
+
+-   And add as many questions to the quiz as they'd like
+
+-   Start implementing the Quiz Table to store the Quiz, until the questions table is implemented will only save the quiz name for now.
 ## Sprint #2
 ## Sprint #3
 ## ... continute with more sprints
