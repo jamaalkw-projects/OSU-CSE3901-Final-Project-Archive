@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'signup#index'
 
-  get 'index'            => 'signup#index'
+  get "/index", to: 'signup#index'
+  get ""
 end
