@@ -1,23 +1,9 @@
 <%# Signup index.html.erb - Project 6 %>
 <%# Created 07/19/2024 by Samuel Colston %>
-
-<h1>Sign Up:</h1>
-<div class=>
-    <form class="mx-1 mx-md-4">
-        <div>
-            <label for="username">User Name:</label>
-            <input type="text" id="username" required>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="text" id="password" required>
-        </div>
-        <div>
-            <label for="passwordcheck">Confirm Password:</label>
-            <input type="text" id="password" required>
-        </div>
-        <div>
-            <input type="submit" value="Signup">
-        </div>
-    </form>
-</div>
+<h1>User Routing</h1>
+    <div>
+        <h3>Sign Up:</h3><br>
+        <%=button_to "Go To Sign Up:", "/users/sign_up", method: :get %>
+        <h3>Log In:</h3><br>
+        <%=button_to "Go To Log In:", "/users/sign_up", method: :get %>
+    </div>

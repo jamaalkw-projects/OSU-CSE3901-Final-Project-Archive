@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   root 'signup#index'
 
   get "/index", to: 'signup#index'
-  get ""
+  devise_for :users
 end
