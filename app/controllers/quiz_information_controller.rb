@@ -2,6 +2,12 @@ class QuizInformationController < ApplicationController
   def index
   end
 
+  def userProfile
+  end
+
+  def quizListUser
+  end
+
   def home
   end
 

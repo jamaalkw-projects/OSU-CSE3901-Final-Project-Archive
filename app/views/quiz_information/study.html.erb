@@ -1,5 +1,13 @@
 <%# study.html.erb - Project 6 %>
 <%# Created 07/18/2024 by Nicholas Colacarro %>
+<%# Edited 07/19/2024 by Nicholas Colacarro: Added buttons to related pages%>
 
 <% provide(:title, "Quiz Name | Study") %>
 <h1> Get ready to study! <h1>
+
+<div>
+    <h3> Go to the first question: </h3>
+    <%=button_to "First Question", question_path, method: :get %>
+    <p> Go to Quiz Information </p>
+    <%=button_to "Quiz Information", index_path, method: :get %>
+</div>

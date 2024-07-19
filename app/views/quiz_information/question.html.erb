@@ -1,5 +1,12 @@
 <%# question.html.erb - Project 6 %>
 <%# Created 07/18/2024 by Nicholas Colacarro %>
+<%# Edited 07/19/2024 by Nicholas Colacarro: Added buttons to related pages%>
 
 <% provide(:title, "Quiz Name | Question #") %>
-<h1> Question: <h1>
+<h1> Question 'number': 'Actual Question'<h1>
+<div>
+    <p> Answer choices: </p>
+    <%=button_to "Next Question", question_path, method: :get %>
+    <%=button_to "Previous Question", question_path, method: :get %>
+    <%=button_to "End Quiz", quizEnd_path, method: :get %>
+</div>
