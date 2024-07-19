@@ -10,4 +10,10 @@ class QuizInformationController < ApplicationController
 
   def host
   end
+
+  def question
+  end
+
+  def quizEnd
+  end
 end
