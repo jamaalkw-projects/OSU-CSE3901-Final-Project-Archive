@@ -1,0 +1,16 @@
+<%# _nav.html.erb - Project 6 %>
+<%# Created 07/19/2024 by Samuel Colston %>
+
+<nav class="navbar navbar-light bg-cyan">
+  <div class="container-fluid">
+    <div class="d-flex">
+        <% if !user_signed_in? %>
+          <%=button_to "Go To Sign Up:", "/users/sign_up", method: :get %>
+          <%=button_to "Go To Log In:", "/users/sign_in", method: :get %>
+        <% else %>
+          <span>Currently Logged in as: </span><%= current_user.email %>
+          <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+        <% end %>
+    </div>
+  </div>
+</nav>
