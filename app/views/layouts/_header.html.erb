@@ -26,7 +26,7 @@
             </form>
           </li>
           <li class="nav-item">
-            <%= link_to "Profile", "/accounts/#{current_user.id}", class: "nav-link" %>
+            <%= link_to "Profile", "#{users_url}/#{current_user.id}", class: "nav-link" %>
           </li>
         <% end %>
       </ul>

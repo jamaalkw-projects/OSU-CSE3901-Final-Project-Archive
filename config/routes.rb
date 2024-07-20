@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   # Users view routes, which use actions from the UsersView controller
   get "/users", to: "users_view#index"
   get "/users/:id", to: "users_view#show"
+  get "/users/edit", to: "users_view#edit"
 end
