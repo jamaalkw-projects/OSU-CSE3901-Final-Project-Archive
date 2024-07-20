@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/search', to: 'users#search', as: 'search_users'
   root "home#index"
   resources :quizzes
   # get "/quizzes", to: "quizzes#index"

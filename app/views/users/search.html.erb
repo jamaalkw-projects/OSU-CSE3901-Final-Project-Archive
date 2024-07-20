@@ -1,0 +1,19 @@
+<h1>Search Users</h1>
+<%= form_with url: search_users_path, method: :get, local: true do %>
+  <div class="form-group">
+    <%= label_tag :query, "Search for Users" %>
+    <%= text_field_tag :query, params[:query], class: "form-control" %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
+<% if @users.any? %>
+  <h2>Results:</h2>
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= user.username %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No users found</p>
+<% end %>
