@@ -10,7 +10,7 @@ class JoinGameControllerTest < ActionDispatch::IntegrationTest
   test "should go to Join Game Page" do
     # routing
     assert_routing "/join_game", :controller => "join_game", :action => "index"
-    get "/join_game"
+    get join_game_url
     assert_response :success
 
     # page content
