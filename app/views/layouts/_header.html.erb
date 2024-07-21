@@ -1,3 +1,4 @@
+<!-- Edited 07/20/24 by Jamaal Wairegi: Changed link of "Profile" nav button -->
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Quiz Gem</a>
@@ -25,7 +26,7 @@
             </form>
           </li>
           <li class="nav-item">
-            <%= link_to "Profile", "/", class: "nav-link" %>
+            <%= link_to "Profile", "#{users_url}/#{current_user.id}", class: "nav-link" %>
           </li>
         <% end %>
         <li class="nav-item">

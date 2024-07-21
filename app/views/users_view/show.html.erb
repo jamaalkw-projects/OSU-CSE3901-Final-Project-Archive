@@ -1,0 +1,17 @@
+<!-- show.html.erb - Project 6
+     Created 07/20/24 by Jamaal Wairegi
+     Edited 07/20/24 by Jamaal Wairegi: Changes based on if user is logged in on their profile -->
+<% yield @user %>
+
+<% if user_signed_in? and @user.id == current_user.id %>
+    <p>Welcome to your profile!</p>
+<% end %>
+
+<%= render @user %>
+
+<div>
+  <% if user_signed_in? and @user.id == current_user.id %>
+    <%= link_to "Edit or delete profile ", users_edit_path %> |
+  <% end %>
+  <%= link_to "Back to users", users_path %>
+</div>

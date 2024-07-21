@@ -1,7 +1,9 @@
+<!-- Edited 07/20/24 by Jamaal Wairegi: Added button to users page -->
 <h1>Home Page</h1>
 <p>Profile partial on the left</p>
 <p>The quizzes</p>
 <p>users</p>
 <p>Find me in app/views/home/index.html.erb</p>
+<%= link_to "All Users", users_path, class: "btn btn-success"%>
 <%= link_to "All Quizzes", quizzes_path, class: "btn btn-success"%>
 <%= link_to "Create Quiz", new_quiz_path, class: "btn btn-success"%>
