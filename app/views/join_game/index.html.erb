@@ -1,0 +1,12 @@
+<!-- index.html.erb - Project 6
+     Created 07/17/24 by Jamaal Wairegi
+     Edited 07/19/24 by Jamaal Wairegi: Moved to 'index.html.erb' -->
+<% provide(:title, "Join Multiplayer Game - QuizGem") %>
+<h1> Join Multiplayer Game </h1>
+<div>
+     <%= form_with url: "/join_game", method: :get do |form| %>
+          <%= form.label :code, "Code/Link:" %>
+          <%= form.text_field :code %><br>
+          <%= form.submit "Enter Game" %>
+     <% end %>
+</div>
