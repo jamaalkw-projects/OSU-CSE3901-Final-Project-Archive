@@ -1,3 +1,9 @@
+=begin
+  question_controller.rb - Project 6
+  Created 07/20/24 by Hengkai Zheng:
+    This controller handles the questions;
+    all other routes are handled by Devise.
+=end
 class QuizzesController < ApplicationController
   def index
     @quizzes = Quiz.all

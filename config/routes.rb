@@ -1,8 +1,12 @@
 # Edited 07/19/24 by Jamaal Wairegi: Removed Landing Page routes
 # Edited 07/20/24 by Jamaal Wairegi: Created routes specifically for the Users view
 # Edited 07/20/24 by Hengkai: Created routes for search user and quiz, create question for quiz
+# Edited 07/21/24 by Sirojiddin Aripov: Changed resources to generate all routes.
 Rails.application.routes.draw do
-  
+  root "home#index"
+
+  resources :quizzes
+
   get 'index'            => 'quiz_information#index'
   get 'userProfile'      => 'quiz_information#userProfile'
   get 'listQuizUser'     => 'quiz_information#listQuizUser'
@@ -11,15 +15,12 @@ Rails.application.routes.draw do
   get 'host'             => 'quiz_information#host'
   get 'question'         => 'quiz_information#question'
   get 'quizEnd'          => 'quiz_information#quizEnd'
-  
+
   get 'questions/new'
   get 'questions/create'
   get 'users/search', to: 'users#search', as: 'search_users'
   get 'quiz_search/search', to: 'quiz_search#search', as: 'search_quiz_search'
-  root "home#index"
-  resources :quizzes do
-    resources :questions, only: [:new, :create]
-  end
+
   # get "/quizzes", to: "quizzes#index"
   # get "/quizzes/new", to: "quizzes#new"
   # post "/quizzes", to: "quizzes#create"

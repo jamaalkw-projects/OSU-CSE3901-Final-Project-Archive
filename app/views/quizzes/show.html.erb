@@ -1,4 +1,5 @@
 <!-- show.html.erb - Project 6
+      Created 07/19/24 by Sirojiddin Aripov
      Edited 07/20/24 by Hengkai Zheng -->
 <h1><%= @quiz.quiz_name %></h1>
 
@@ -10,5 +11,6 @@
   <% end %>
 </ul>
 
-<%= link_to 'Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary' %>
+<%= link_to 'Add Question', questions_new_path(@quiz), class: 'btn btn-primary' %>
+<%= link_to "Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white" %>
 <%= button_to "Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger" %>
