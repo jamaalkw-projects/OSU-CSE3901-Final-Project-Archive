@@ -5,8 +5,9 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  resources :quizzes
-
+  resources :quizzes do
+  resources :questions, only: [:new, :create]
+  end
   get 'index'            => 'quiz_information#index'
   get 'userProfile'      => 'quiz_information#userProfile'
   get 'listQuizUser'     => 'quiz_information#listQuizUser'

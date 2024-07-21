@@ -1,6 +1,6 @@
 =begin
   question_controller.rb - Project 6
-  Created 07/20/24 by Hengkai Zheng:
+  Edited 07/20/24 by Hengkai Zheng:
     This controller handles the questions;
     all other routes are handled by Devise.
 =end
@@ -15,6 +15,7 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
+    @questions = @quiz.questions
   end
 
   def create
