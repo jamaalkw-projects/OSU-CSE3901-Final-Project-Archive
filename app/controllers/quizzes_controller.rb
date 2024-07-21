@@ -15,7 +15,6 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    @questions = @quiz.questions
   end
 
   def create
@@ -29,9 +28,17 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-    @test = "hello"
+    @quiz = Quiz.find(params[:id])
   end
 
+  def update
+    @quiz = Quiz.find(params[:id])
+    if @quiz.update(quiz_params)
+      redirect_to @quiz
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
   def destroy
     quiz = Quiz.find(params[:id])
     if quiz.present?
@@ -39,8 +46,6 @@ class QuizzesController < ApplicationController
     end
     redirect_to root_path
   end
-
-
 
   private
 
