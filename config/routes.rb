@@ -2,6 +2,17 @@
 # Edited 07/20/24 by Jamaal Wairegi: Created routes specifically for the Users view
 # Edited 07/20/24 by Hengkai: Created routes for search user and quiz, create question for quiz
 Rails.application.routes.draw do
+  root 'quiz_information#index'
+
+  get 'index'            => 'quiz_information#index'
+  get 'userProfile'      => 'quiz_information#userProfile'
+  get 'listQuizUser'     => 'quiz_information#listQuizUser'
+  get 'home'             => 'quiz_information#home'
+  get 'study'            => 'quiz_information#study'
+  get 'host'             => 'quiz_information#host'
+  get 'question'         => 'quiz_information#question'
+  get 'quizEnd'          => 'quiz_information#quizEnd'
+  
   get 'questions/new'
   get 'questions/create'
   get 'users/search', to: 'users#search', as: 'search_users'
