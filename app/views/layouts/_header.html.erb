@@ -33,13 +33,27 @@
           <%= link_to "Join Game", "/join_game", class: "nav-link" %>
         </li>
       </ul>
-      <form class="d-flex" role="search" action = "users/search">
+      <form class="d-flex" id = "searchForm" role="search" action="<%= search_quiz_search_path %>" method="get">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      <div class="btn-group ms-2" role="group">
+        <button type="button" class="btn btn-secondary" id="searchQuiz">Search Quizzes</button>
+        <button type="button" class="btn btn-secondary" id="searchUsers">Search Users</button>
+      </div>
       <% if user_signed_in? %>
         <div class="d-flex">Currently Logged in as: <%= current_user.email %></div>
       <% end %>
     </div>
   </div>
 </nav>
+
+<script>
+  document.getElementById('searchQuiz').addEventListener('click', function() {
+    document.getElementById('searchForm').action = '<%= search_quiz_search_path %>';
+  });
+
+  document.getElementById('searchUsers').addEventListener('click', function() {
+    document.getElementById('searchForm').action = '<%= search_users_path %>';
+  });
+</script>

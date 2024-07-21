@@ -2,6 +2,7 @@
 # Edited 07/20/24 by Jamaal Wairegi: Created routes specifically for the Users view
 Rails.application.routes.draw do
   get 'users/search', to: 'users#search', as: 'search_users'
+  get 'quiz_search/search', to: 'quiz_search#search', as: 'search_quiz_search'
   root "home#index"
   resources :quizzes
   # get "/quizzes", to: "quizzes#index"
