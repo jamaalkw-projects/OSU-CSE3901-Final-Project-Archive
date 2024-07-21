@@ -1,2 +1,14 @@
-<%= @quiz.quiz_name %>
+<!-- show.html.erb - Project 6
+     Edited 07/20/24 by Hengkai Zheng -->
+<h1><%= @quiz.quiz_name %></h1>
+
+
+<h2>Questions</h2>
+<ul>
+  <% @quiz.questions.each do |question| %>
+    <li><%= question.content %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary' %>
 <%= button_to "Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger" %>

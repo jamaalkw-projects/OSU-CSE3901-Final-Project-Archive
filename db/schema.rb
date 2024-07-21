@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_20_224308) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_21_044812) do
   create_table "join_games", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "quiz_id", null: false
+    t.text "content"
+    t.string "correct_answer"
+    t.string "wrong_answer_1"
+    t.string "wrong_answer_2"
+    t.string "wrong_answer_3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -35,4 +47,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_20_224308) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "questions", "quizzes"
 end
