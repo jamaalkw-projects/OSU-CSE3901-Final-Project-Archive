@@ -4,7 +4,7 @@
 ## Description
 QuizGem is a web application that will allow users to create their own tests for certain subjects
 and study them--alone or with others. Users will be able to create and share quizzes and go through
-them in a variety of game modes, both single and multiplayer.
+them in a single-player studying mode, and a multi-player timed competition mode.
 ## Managers
 - Jamaal Wairegi: Testing Manager
 ## Use Cases and routes
@@ -58,10 +58,9 @@ them in a variety of game modes, both single and multiplayer.
 16. End Game
 ## Sprint #1 - Due Friday, July 19th
 Jamaal Wairegi:
-- Create an HTML page and route for joining a game–taking in a given link or code and taking the user from the join game page to the host game page (as a joined user).
-- Create an HTML page and route for logging in–taking given credentials, verifying that it is in the database, and taking the user from the landing page to the home page.
-- Create an HTML page and route for the landing page–the page that unlogged in users will first see.
-
+- Create a route for joining a game–taking in a given link or code and taking the user from the join game page to the host game page. If a user is not signed in, they will be given a random name (implemented as a navbar search form).
+- Create a controller and routes for viewing user information (UserView controller).
+- Initially implemented a route for the landing page, which included logging in, signing up, and joining games, but moved those links to the navbar.
 Sirojiddin Aripov :
 -   Work on the Homepage and Quiz Creating Environment.
 -   Start work on Host Game page and
@@ -75,7 +74,10 @@ Sirojiddin Aripov :
 -   And add as many questions to the quiz as they'd like
 
 -   Start implementing the Quiz Table to store the Quiz, until the questions table is implemented will only save the quiz name for now.
-## Sprint #2
+## Sprint #2 - Due Thursday, July 25th
+Jamaal Wairegi:
+- Create Incorrect Answers table, RESTful routes, and give it an association with the Questions table
+- Style HTML pages for UserView controller
 ## Sprint #3
 ## ... continute with more sprints
 ## Team Contributions

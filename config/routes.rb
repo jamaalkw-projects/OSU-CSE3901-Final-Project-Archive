@@ -2,6 +2,7 @@
 # Edited 07/20/24 by Jamaal Wairegi: Created routes specifically for the Users view
 # Edited 07/20/24 by Hengkai: Created routes for search user and quiz, create question for quiz
 # Edited 07/21/24 by Sirojiddin Aripov: Changed resources to generate all routes.
+# Edited 07/21/24 by Jamaal Wairegi: Edited devise routes for usernames
 Rails.application.routes.draw do
   root "home#index"
 
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Users routes, provided by Devise
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Users view routes, which use actions from the UsersView controller
   get "/users", to: "users_view#index"

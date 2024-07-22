@@ -13,7 +13,11 @@
   <h2>Results:</h2>
   <ul>
     <% @users.each do |user| %>
-      <li><%= user.username %></li>
+      <li>
+        <%= user.username %><br>
+        <%= user.email %><br>
+        <%= link_to "Show this user", "#{users_path}/#{user.id}" %><br>
+      </li>
     <% end %>
   </ul>
 <% else %>

@@ -29,9 +29,6 @@
             <%= link_to "Profile", "#{users_url}/#{current_user.id}", class: "nav-link" %>
           </li>
         <% end %>
-        <li class="nav-item">
-          <%= link_to "Join Game", "/join_game", class: "nav-link" %>
-        </li>
       </ul>
       <form class="d-flex" id = "searchForm" role="search" action="<%= search_quiz_search_path %>" method="get">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -41,8 +38,13 @@
         <button type="button" class="btn btn-secondary" id="searchQuiz">Search Quizzes</button>
         <button type="button" class="btn btn-secondary" id="searchUsers">Search Users</button>
       </div>
+      <!-- Edited 07/22/24 by Jamaal Wairegi: Added Join Multiplayer Game form to header; will lead to host page of code once implemented -->
+      <form class="d-flex" id = "searchForm" role="query" action="<%= root_url %>" method="get">
+        <input class="form-control me-2" type="query" placeholder="Code" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Join</button>
+      </form>
       <% if user_signed_in? %>
-        <div class="d-flex">Currently Logged in as: <%= current_user.email %></div>
+        <div class="d-flex"> Currently Logged in as: <%= "#{current_user.username} (#{current_user.email})" %></div>
       <% end %>
     </div>
   </div>

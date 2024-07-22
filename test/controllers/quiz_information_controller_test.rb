@@ -12,7 +12,7 @@ class QuizInformationControllerTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
     #assert_select "title", "Quiz Name"
-    assert_select "button", {:count => 4}
+    assert_select "button", {:count => 5}
   end
 
   # Test 2
@@ -38,7 +38,7 @@ class QuizInformationControllerTest < ActionDispatch::IntegrationTest
     get study_path
     assert_response :success
     #assert_select "title", "Quiz Name | Study"
-    assert_select "button", {:count => 6}
+    assert_select "button", {:count => 7}
   end
 
   # Test 6
@@ -52,7 +52,7 @@ class QuizInformationControllerTest < ActionDispatch::IntegrationTest
     get question_path
     assert_response :success
     #assert_select "title", "Quiz Name | Question #"
-    assert_select "button", {:count => 7}
+    assert_select "button", {:count => 8}
   end
 
   # Test 8 - End of Quiz Page
@@ -60,6 +60,6 @@ class QuizInformationControllerTest < ActionDispatch::IntegrationTest
     get quizEnd_path
     assert_response :success
     #assert_select "title", "Quiz Name | Quiz Ended"
-    assert_select "button", {:count => 6}
+    assert_select "button", {:count => 7}
   end
 end
