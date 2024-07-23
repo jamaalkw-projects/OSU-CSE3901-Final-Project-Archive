@@ -15,4 +15,8 @@
 <%= link_to 'Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary' %>
 <%= link_to "Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white" %>
 <%= button_to "Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger" %>
-<%= link_to 'Study', study_question_path(@first_question , quiz_id: @quiz.id), class: 'btn btn-primary' %>
+<% if @first_question %>
+  <%= link_to 'Study', study_question_path(@first_question), class: 'btn btn-primary' %>
+<% else %>
+  <p>No questions available to study.</p>
+<% end %>
