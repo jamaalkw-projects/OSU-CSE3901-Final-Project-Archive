@@ -3,6 +3,7 @@
 # Edited 07/20/24 by Hengkai: Created routes for search user and quiz, create question for quiz
 # Edited 07/21/24 by Sirojiddin Aripov: Changed resources to generate all routes.
 # Edited 07/21/24 by Jamaal Wairegi: Edited devise routes for usernames
+# Edited 07/22/24 by Samuel Colston: Updated get user/edit route to include :id and added user update and delete route.
 Rails.application.routes.draw do
   root "home#index"
 
@@ -36,7 +37,14 @@ Rails.application.routes.draw do
   # Users view routes, which use actions from the UsersView controller
   get "/users", to: "users_view#index"
   get "/users/:id", to: "users_view#show"
-  get "/users/edit", to: "users_view#edit"
+  get "/users/edit/:id", to: "users_view#edit", as: 'user_edit'
+  put "/users/edit/:id", to: "users#update"
+  delete "/users/edit/:id", to: "users#delete"
+  
+
+  
+
+
 
   # Join game route
   get "/join_game", to: "join_game#index"

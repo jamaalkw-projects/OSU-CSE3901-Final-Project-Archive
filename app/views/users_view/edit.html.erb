@@ -1,0 +1,17 @@
+<%# Edited 07/22/2024 by Samuel Colston: Created to edit selective elements or delete account.%>
+<h2>Edit User</h2>
+
+<%= form_with(model: @user, url: user_edit_path(@user), local: true, method: :put) do |f| %>
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: false, autocomplete: "username" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<%= button_to 'Delete', user_edit_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+<%= link_to "Back", :back %>
