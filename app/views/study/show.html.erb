@@ -1,0 +1,17 @@
+<!-- show.html.erb - Project 6
+    Created 7/22/24 by Nicholas Colacarro -->
+    
+<h1>Study for <%= @quiz.quiz_name %></h1>
+
+<h2>Questions</h2>
+<ul>
+    <% @questions.each do |question| %>
+        <li><%= question.content %></li>
+    <% end %>
+</ul>
+
+<% if @first_question %>
+    <%= link_to 'Start Study', study_question_path(@first_question, quiz_id: @quiz.id), class: 'btn btn-primary' %>
+<% else %>
+    <p> The quiz has no available questions to study.</p>
+<% end %>
