@@ -4,14 +4,17 @@
 # Edited 07/21/24 by Sirojiddin Aripov: Changed resources to generate all routes.
 # Edited 07/21/24 by Jamaal Wairegi: Edited devise routes for usernames
 # Edited 07/22/24 by Nicholas Colacarro: Edited/Added routes for studying. Deleted routes for quiz_information
+# Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes for correct choices for questions.
 Rails.application.routes.draw do
   root "home#index"
 
   resources :quizzes do
-    resources :questions, only: [:new, :create]
-    member do
-      get 'study', to: 'study#show'
+    resources :questions, only: [:new, :create, :show, :index, :edit, :update] do
+      resources :correct_choices, only: [:new, :create, :update, :destroy]
     end
+      member do
+        get 'study', to: 'study#show'
+      end
   end
 
   resources :questions, only: [] do
