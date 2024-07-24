@@ -2,22 +2,22 @@
       Created 07/19/24 by Sirojiddin Aripov
      Edited 07/20/24 by Hengkai Zheng 
      Edited 07/22/24 by Nicholas Colacarro: Added button to study quiz
-     Edited 07/23/24 by Nicholas Colacarro: Added button edit each question -->
+     Edited 07/23/24 by Nicholas Colacarro: Added button edit each question and changed to numbered list -->
 
-<% owns_quiz = user_signed_in? and @quiz.user_id == current_user.id%>
+<% owns_quiz = (user_signed_in?) && (@quiz.user_id == current_user.id) %>
 
 <h1><%= @quiz.quiz_name %></h1>
-<h3>Author: <%= @author.username %>, <%= link_to "Show this user", "#{users_path}/#{@author.id}" %></h3>
+<h3>Author: <%= link_to "#{@author.username}", "#{users_path}/#{@author.id}" %></h3>
 
 <% if owns_quiz %>
-  <h2>Questions</h2>
-  <ul>
-    <% @quiz.questions.each do |question| %>
-      <li><%= question.content %>
-      <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
-      </li>
-    <% end %>
-  </ul>
+<h2>Questions</h2>
+<ol>
+  <% @quiz.questions.each do |question| %>
+    <li><%= question.content %>
+    <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
+    </li>
+  <% end %>
+</ol>
 <% end %>
 
 <%= link_to('Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary') if owns_quiz %>

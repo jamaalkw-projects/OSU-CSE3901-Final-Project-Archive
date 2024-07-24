@@ -20,11 +20,7 @@ class CorrectChoicesController < ApplicationController
       @correct_choice = @question.correct_choices.build(correct_choice_params)
       if @correct_choice.valid?
         @correct_choice.save
-        if flash[:notice] == 'Question was successfully created. Now add correct and incorrect choices.'
-          redirect_to new_quiz_question_incorrect_choice_path(@question.quiz, @question)
-        else
-          redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Correct choice was successfully created.'
-        end
+        redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Correct choice was successfully created.'
       else
         redirect_to new_quiz_question_correct_choice_path(@question.quiz, @question), alert: @correct_choice.errors.to_hash
       end

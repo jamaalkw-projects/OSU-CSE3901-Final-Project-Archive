@@ -2,6 +2,7 @@
      Created 07/20/24 by Jamaal Wairegi
      Edited 07/20/24 by Jamaal Wairegi: Changes based on if user is logged in on their profile -->
 <% yield @user %>
+<% yield @quizzes %>
 
 <% if user_signed_in? and @user.id == current_user.id %>
     <p>Welcome to your profile!</p>
