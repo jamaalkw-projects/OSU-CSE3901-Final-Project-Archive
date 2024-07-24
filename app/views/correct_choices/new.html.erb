@@ -4,7 +4,7 @@
 <% yield notice %>
 <% if notice != nil %>
   <ul>
-    <li> <%= notice%> </li>
+    <li> <%= notice %> </li>
   <ul>
 <% end %>
 <% yield alert %>
@@ -12,12 +12,8 @@
   <div> Error(s) with creating answer: </div>
   <ul>
   <% alert.each_key do |error| %>
-    <% if alert[error].class == Array %>
-      <% alert[error].each do |part| %>
-        <li> <%= part %> </li>
-      <% end %>
-    <% else %>
-      <li> <%= alert[error]%> </li>
+    <% alert[error].each do |part| %>
+      <li> <%= part %> </li>
     <% end %>
   <% end %>
   </ul>
@@ -27,6 +23,7 @@
   <div class="form-group">
     <%= form.label :option, "Correct Choice" %>
     <%= form.text_field :option, class: "form-control" %>
+    <%= form.hidden_field :notice, :value => notice %>
   </div>
   <%= form.submit "Create Correct Choice", class: "btn btn-primary" %>
 <% end %>

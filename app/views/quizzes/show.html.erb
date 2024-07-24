@@ -4,20 +4,25 @@
      Edited 07/22/24 by Nicholas Colacarro: Added button to study quiz
      Edited 07/23/24 by Nicholas Colacarro: Added button edit each question -->
 
+<% owns_quiz = user_signed_in? and @quiz.user_id == current_user.id%>
+
 <h1><%= @quiz.quiz_name %></h1>
+<h3>Author: <%= @author.username %>, <%= link_to "Show this user", "#{users_path}/#{@author.id}" %></h3>
 
-<h2>Questions</h2>
-<ul>
-  <% @quiz.questions.each do |question| %>
-    <li><%= question.content %>
-    <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
-    </li>
-  <% end %>
-</ul>
+<% if owns_quiz %>
+  <h2>Questions</h2>
+  <ul>
+    <% @quiz.questions.each do |question| %>
+      <li><%= question.content %>
+      <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
-<%= link_to 'Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary' %>
-<%= link_to "Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white" %>
-<%= button_to "Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger" %>
+<%= link_to('Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary') if owns_quiz %>
+<%= link_to("Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white") if owns_quiz %>
+<%= button_to("Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger") if owns_quiz %>
 <% if @first_question %>
   <%= link_to 'Study', study_question_path(@first_question), class: 'btn btn-primary' %>
 <% else %>
