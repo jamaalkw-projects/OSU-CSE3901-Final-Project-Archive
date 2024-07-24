@@ -2,9 +2,9 @@
 <%= form_with(model: quiz) do |form| %>
   <% if quiz.errors.any? %>
     <div style="color:red">
-      <h2><%= pluralize(quiz.errors.count, "error") %> prevented the creation of this quiz.</h2>
-      <% quiz.errors.each do |error| %>
-        <p><%= error %></p>
+      <h4><%= pluralize(quiz.errors.count, "error") %> prevented the creation of this quiz.</h4>
+      <% quiz.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
       <% end %>
     </div>
   <% end %>

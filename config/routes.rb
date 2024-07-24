@@ -9,7 +9,7 @@
 # Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes to submit answer and for end of quiz
 Rails.application.routes.draw do
   root "home#index"
-
+  resources :rooms
   resources :quizzes do
     resources :questions, only: [:new, :create, :show, :index, :edit, :update] do
       resources :correct_choices, only: [:new, :create, :update, :destroy]
