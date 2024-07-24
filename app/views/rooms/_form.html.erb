@@ -1,4 +1,4 @@
-<%= form_with(model: @room, remote: true, class: "d-flex") do |form| %>
+<%= form_with(model: [@quiz, room], remote: true, class: "d-flex") do |form| %>
   <% if room.errors.any? %>
     <div style="color:red">
       <h4><%= pluralize(room.errors.count, "error") %> prevented the creation of this room.</h4>
@@ -9,7 +9,7 @@
   <% end %>
   <br>
   <div>
-    <%= form.text_field :name, style: "padding-end: 0.1vw", :class => "form-label", autocomplete: 'off' %>
+    <%= form.text_field :room_number, style: "padding-end: 0.1vw", :class => "form-label", autocomplete: 'off' %>
     <%= form.submit data: { disable_with: false },:class => "btn btn-info text-white"  %>
   </div>
 <% end %>

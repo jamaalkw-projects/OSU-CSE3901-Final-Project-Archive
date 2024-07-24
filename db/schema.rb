@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_182803) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_24_185839) do
   create_table "correct_choices", force: :cascade do |t|
     t.string "option"
     t.integer "question_id", null: false
@@ -51,6 +51,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_182803) do
     t.string "room_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quiz_id"
+    t.index ["quiz_id"], name: "index_rooms_on_quiz_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,4 +72,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_182803) do
   add_foreign_key "incorrect_choices", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "users"
+  add_foreign_key "rooms", "quizzes"
 end

@@ -22,6 +22,7 @@
 
 <%= link_to('Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary') if owns_quiz %>
 <%= link_to("Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white") if owns_quiz %>
+<%= link_to("Start Live Session", new_quiz_room_path(@quiz), class: "d-inline btn btn-info text-white") if owns_quiz %>
 <%= button_to("Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger") if owns_quiz %>
 <% if @first_question %>
   <%= link_to 'Study', study_question_path(@first_question), class: 'btn btn-primary' %>
