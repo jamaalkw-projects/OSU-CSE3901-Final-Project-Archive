@@ -4,5 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :quizzes
+
+  has_one :room
+
   validates :username, length: {minimum: 5}, allow_blank: false
 end
