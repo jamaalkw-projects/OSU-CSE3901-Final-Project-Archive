@@ -2,7 +2,7 @@
     Created 7/22/24 by Nicholas Colacarro
     Edited 7/23/24 by Nicholas Colacarro: Added all choices shuffled with button to submit. -->
 
-<h1>Question <%= @question_index %></h1>
+<h1>Question <%= @question_index %> of <%= @total_questions %></h1>
 <p><%= @question.content %></p>
 
 <% choices = @question.incorrect_choices.map(&:option) + [@question.correct_choices.map(&:option)] %>

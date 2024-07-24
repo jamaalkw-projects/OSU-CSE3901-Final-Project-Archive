@@ -18,6 +18,7 @@ class StudyController < ApplicationController
     @question = Question.find(params[:id])
     @questions = @question.quiz.questions.order(:created_at)
     @question_index = @questions.index(@question) + 1
+    @total_questions = @questions.count
   end
 
   def next_question
