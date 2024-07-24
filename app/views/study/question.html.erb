@@ -6,7 +6,7 @@
 <p><%= @question.content %></p>
 
 <!-- Shuffles all possible choices and lists them. -->
-<% choices = @question.incorrect_choices.map(&:option) + [@question.correct_choices.map(&:option)] %>
+<% choices = @question.incorrect_choices.map(&:option) + @question.correct_choices.map(&:option) %>
 <% choices.shuffle.each do |choice| %>
   <div>
     <%= form_with url: submit_answer_path, method: :post do %>
