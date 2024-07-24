@@ -21,6 +21,7 @@ class StudyController < ApplicationController
   end
 
   def next_question
+    question = Question.find(params[:id])
     @quiz = Quiz.find(params[:quiz_id])
     @questions = @quiz.questions.order(:created_at)
     @current_question = @questions.find_by(id: params[:id])
@@ -29,7 +30,7 @@ class StudyController < ApplicationController
     if @next_question
       redirect_to study_question_path(@next_question, quiz_id: @quiz.id)
     else
-      redirect_to quiz_end_path(quiz_id: @quiz.id)
+      redirect_to end_quiz_path(question.quiz_id)
     end
   end
 
