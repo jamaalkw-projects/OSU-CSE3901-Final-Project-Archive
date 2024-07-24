@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+ .correct {
+    background-color: #28a745; /* Green */
+    color: white;
+  }
+  
+  .incorrect {
+    background-color: #dc3545; /* Red */
+    color: white;
+  }
