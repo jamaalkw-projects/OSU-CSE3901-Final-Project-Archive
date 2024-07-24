@@ -2,18 +2,18 @@
       Created 07/19/24 by Sirojiddin Aripov
      Edited 07/20/24 by Hengkai Zheng 
      Edited 07/22/24 by Nicholas Colacarro: Added button to study quiz
-     Edited 07/23/24 by Nicholas Colacarro: Added button edit each question -->
+     Edited 07/23/24 by Nicholas Colacarro: Added button edit each question and changed to numbered list -->
 
 <h1><%= @quiz.quiz_name %></h1>
 
 <h2>Questions</h2>
-<ul>
+<ol>
   <% @quiz.questions.each do |question| %>
     <li><%= question.content %>
     <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
     </li>
   <% end %>
-</ul>
+</ol>
 
 <%= link_to 'Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary' %>
 <%= link_to "Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white" %>

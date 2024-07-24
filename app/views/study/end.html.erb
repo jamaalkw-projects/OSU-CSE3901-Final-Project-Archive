@@ -1,5 +1,7 @@
 <!-- show.html.erb - Project 6
-    Created 7/22/24 by Nicholas Colacarro -->
+    Created 7/22/24 by Nicholas Colacarro 
+    Edited 7/23/24 by Nicholas Colacarro: added score of quiz and link to retake quiz. -->
 
-<h1>Study#end</h1>
-<p>Find me in app/views/study/end.html.erb</p>
+<h1>Quiz Completed</h1>
+<p>You answered <%= @score %> out of <%= @total_questions %> questions correctly.</p>
+<%= link_to 'Start Over', study_question_path(@quiz.questions.first, quiz_id: @quiz.id), class: 'btn btn-primary' %>
