@@ -8,7 +8,7 @@
 # Edited 07/22/24 by Samuel Colston: Updated get user/edit route to include :id and added user update and delete route.
 Rails.application.routes.draw do
   root "home#index"
-
+  resources :rooms
   resources :quizzes do
     resources :questions, only: [:new, :create, :show, :index, :edit, :update] do
       resources :correct_choices, only: [:new, :create, :update, :destroy]
