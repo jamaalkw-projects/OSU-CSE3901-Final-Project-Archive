@@ -1,6 +1,27 @@
 <!-- new.html.erb - Project 6
-    Created 7/23/24 by Nicholas Colacarro -->
-
+    Created 7/23/24 by Nicholas Colacarro
+    Edited 07/23/24 by Jamaal Wairegi: Allowed notices and errors for creation to appear -->
+<% yield notice %>
+<% if notice != nil %>
+  <ul>
+    <li> <%= notice%> </li>
+  <ul>
+<% end %>
+<% yield alert %>
+<% if alert != nil %>
+  <div> Error(s) with creating answer: </div>
+  <ul>
+  <% alert.each_key do |error| %>
+    <% if alert[error].class == Array %>
+      <% alert[error].each do |part| %>
+        <li> <%= part %> </li>
+      <% end %>
+    <% else %>
+      <li> <%= alert[error]%> </li>
+    <% end %>
+  <% end %>
+  </ul>
+<% end %>
 <h1>New Incorrect Choice</h1>
 <%= form_with(model: @incorrect_choice, url: quiz_question_incorrect_choices_path(@question.quiz, @question), local: true) do |form| %>
   <div class="form-group">

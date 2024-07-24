@@ -24,6 +24,16 @@ class IncorrectChoicesController < ApplicationController
     end
   end
 
+  def create
+    @incorrect_choice = @question.incorrect_choices.build(incorrect_choice_params)
+    if @incorrect_choice.valid?
+      @incorrect_choice.save
+      redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Incorrect choice was successfully created.'
+    else
+      redirect_to new_quiz_question_incorrect_choice_path(@question.quiz, @question), alert: @incorrect_choice.errors.to_hash
+    end
+  end
+
   def update
     if @incorrect_choice.update(incorrect_choice_params)
       redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Incorrect choice was successfully updated.'

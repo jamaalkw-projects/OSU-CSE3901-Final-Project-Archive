@@ -1,6 +1,12 @@
 <!-- edit.html.erb - Project 6
     Created 7/23/24 by Nicholas Colacarro
     Edited 07/23/24 by Jamaal Wairegi: Added incorrect choice info -->
+<% yield notice %>
+<% if notice != nil %>
+  <ul>
+    <li> <%= notice %> </li>
+  <ul>
+<% end %>
 
 <h1>Edit Question</h1>
 

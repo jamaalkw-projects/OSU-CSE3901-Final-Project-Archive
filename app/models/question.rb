@@ -5,4 +5,6 @@ class Question < ApplicationRecord
 
   accepts_nested_attributes_for :correct_choices, allow_destroy: true
   accepts_nested_attributes_for :incorrect_choices, allow_destroy: true
+
+  validates :content, length: {minimum: 1}, allow_blank: false
 end
