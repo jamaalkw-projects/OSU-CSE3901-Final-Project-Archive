@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :quizzes do
-    resources :rooms
+    resources :rooms do
+      member do
+        post 'join'
+      end
+    end
     resources :questions, only: [:new, :create, :show, :index, :edit, :update] do
       resources :correct_choices, only: [:new, :create, :update, :destroy]
       resources :incorrect_choices, only: [:new, :create, :update, :destroy]
