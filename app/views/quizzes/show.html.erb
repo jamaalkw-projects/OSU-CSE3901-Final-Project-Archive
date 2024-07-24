@@ -1,16 +1,25 @@
 <!-- show.html.erb - Project 6
       Created 07/19/24 by Sirojiddin Aripov
-     Edited 07/20/24 by Hengkai Zheng -->
-<h1><%= @quiz.quiz_name %></h1>
+     Edited 07/20/24 by Hengkai Zheng 
+     Edited 07/22/24 by Nicholas Colacarro: Added button to study quiz
+     Edited 07/23/24 by Nicholas Colacarro: Added button edit each question -->
 
+<h1><%= @quiz.quiz_name %></h1>
 
 <h2>Questions</h2>
 <ul>
   <% @quiz.questions.each do |question| %>
-    <li><%= question.content %></li>
+    <li><%= question.content %>
+    <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
+    </li>
   <% end %>
 </ul>
 
 <%= link_to 'Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary' %>
 <%= link_to "Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white" %>
 <%= button_to "Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger" %>
+<% if @first_question %>
+  <%= link_to 'Study', study_question_path(@first_question), class: 'btn btn-primary' %>
+<% else %>
+  <p>No questions available to study.</p>
+<% end %>

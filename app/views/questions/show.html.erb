@@ -1,0 +1,26 @@
+<!-- show.html.erb - Project 6
+    Created 7/23/24 by Nicholas Colacarro
+    Edited 07/23/24 by Jamaal Wairegi: Added incorrect choice info  -->
+
+<h1>Question Details</h1>
+<p>
+  <strong>Question:</strong>
+  <%= @question.content %>
+</p>
+
+<h2>Correct Choices</h2>
+<ul>
+  <% @question.correct_choices.each do |choice| %>
+    <li><%= choice.option %></li>
+  <% end %>
+</ul>
+<h2>Incorrect Choices</h2>
+<ul>
+  <% @question.incorrect_choices.each do |choice| %>
+    <li><%= choice.option %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Add Correct Choice', new_quiz_question_correct_choice_path(@quiz, @question), class: 'btn btn-secondary' %>
+<%= link_to 'Add Incorrect Choice', new_quiz_question_incorrect_choice_path(@quiz, @question), class: 'btn btn-secondary' %>
+<%= link_to 'Back to Quiz', quiz_path(@quiz), class: 'btn btn-primary' %>

@@ -1,0 +1,25 @@
+<!-- show.html.erb - Project 6
+    Created 7/23/24 by Nicholas Colacarro -->
+
+<%= form_with(model: [@question, correct_choice], local: true) do |form| %>
+    <% if correct_choice.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(correct_choice.errors.count, "error") %> prohibited this correct choice from being saved:</h2>
+  
+        <ul>
+          <% correct_choice.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="form-group">
+      <%= form.label :option, "Correct Choice" %>
+      <%= form.text_field :option, class: "form-control" %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>

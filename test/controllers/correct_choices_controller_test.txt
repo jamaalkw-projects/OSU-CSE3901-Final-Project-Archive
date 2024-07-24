@@ -1,0 +1,13 @@
+Tested the correct choices controller using the web page application.
+
+Test #1 - Made sure that when looking at the list of questions for a quiz, the edit button is shown for each.
+Status: passed
+
+Test #2 - When adding a correct choice to a question the webpage list/database updates correctly.
+Status: passed
+
+Test #3 - The remove feature for a correct choice will delete the choice from the list.
+Status: passed
+
+Test #4 - Can add mulitple correct choices to a single question.
+Status: passed

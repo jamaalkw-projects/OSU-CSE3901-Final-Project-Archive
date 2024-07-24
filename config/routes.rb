@@ -2,20 +2,30 @@
 # Edited 07/20/24 by Jamaal Wairegi: Created routes specifically for the Users view
 # Edited 07/20/24 by Hengkai: Created routes for search user and quiz, create question for quiz
 # Edited 07/21/24 by Sirojiddin Aripov: Changed resources to generate all routes.
+# Edited 07/21/24 by Jamaal Wairegi: Edited devise routes for usernames
+# Edited 07/22/24 by Nicholas Colacarro: Edited/Added routes for studying. Deleted routes for quiz_information
+# Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes for correct choices for questions.
+# Edited 07/22/24 by Samuel Colston: Updated get user/edit route to include :id and added user update and delete route.
 Rails.application.routes.draw do
   root "home#index"
 
   resources :quizzes do
-  resources :questions, only: [:new, :create]
+    resources :questions, only: [:new, :create, :show, :index, :edit, :update] do
+      resources :correct_choices, only: [:new, :create, :update, :destroy]
+      resources :incorrect_choices, only: [:new, :create, :update, :destroy]
+    end
+      member do
+        get 'study', to: 'study#show'
+      end
   end
-  get 'index'            => 'quiz_information#index'
-  get 'userProfile'      => 'quiz_information#userProfile'
-  get 'listQuizUser'     => 'quiz_information#listQuizUser'
-  get 'home'             => 'quiz_information#home'
-  get 'study'            => 'quiz_information#study'
-  get 'host'             => 'quiz_information#host'
-  get 'question'         => 'quiz_information#question'
-  get 'quizEnd'          => 'quiz_information#quizEnd'
+
+  resources :questions, only: [] do
+    member do
+      get 'next', to: 'study#next_question'
+      get 'previous', to: 'study#previous_question'
+      get 'study', to: 'study#question'
+    end
+  end
 
   get 'questions/new'
   get 'questions/create'
@@ -30,12 +40,19 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Users routes, provided by Devise
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   # Users view routes, which use actions from the UsersView controller
   get "/users", to: "users_view#index"
   get "/users/:id", to: "users_view#show"
-  get "/users/edit", to: "users_view#edit"
+  get "/users/edit/:id", to: "users_view#edit", as: 'user_edit'
+  put "/users/edit/:id", to: "users#update"
+  delete "/users/edit/:id", to: "users#delete"
+  
+
+  
+
+
 
   # Join game route
   get "/join_game", to: "join_game#index"

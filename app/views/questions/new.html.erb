@@ -1,26 +1,11 @@
 <!-- _new.html.erb - Project 6
-     Created 07/20/24 by Hengkai Zheng -->
+     Created 07/20/24 by Hengkai Zheng 
+     Edited 07/23/224 by Nicholas Colacarro: Got rid of set amount of answer choices. -->
 <h1>Create a New Question</h1>
 <%= form_with(model: [@quiz, @question], local: true) do |form| %>
   <div class="form-group">
     <%= form.label :content, "Question" %>
     <%= form.text_area :content, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :correct_answer, "Correct Answer" %>
-    <%= form.text_field :correct_answer, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :wrong_answer_1, "Wrong Answer 1" %>
-    <%= form.text_field :wrong_answer_1, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :wrong_answer_2, "Wrong Answer 2" %>
-    <%= form.text_field :wrong_answer_2, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :wrong_answer_3, "Wrong Answer 3" %>
-    <%= form.text_field :wrong_answer_3, class: "form-control" %>
   </div>
   <%= form.submit "Create Question", class: "btn btn-primary" %>
 <% end %>

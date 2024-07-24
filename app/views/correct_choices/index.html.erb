@@ -1,0 +1,19 @@
+<!-- show.html.erb - Project 6
+    Created 7/23/24 by Nicholas Colacarro -->
+
+<h1>Correct Choices for Question: <%= @question.content %></h1>
+
+<%= link_to 'New Correct Choice', new_question_correct_choice_path(@question) %>
+
+<ul>
+  <% @correct_choices.each do |correct_choice| %>
+    <li>
+      <%= correct_choice.option %>
+      <%= link_to 'Show', [@question, correct_choice] %>
+      <%= link_to 'Edit', edit_question_correct_choice_path(@question, correct_choice) %>
+      <%= link_to 'Destroy', [@question, correct_choice], method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back to Question', question_path(@question) %>
