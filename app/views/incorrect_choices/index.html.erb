@@ -1,0 +1,19 @@
+<!-- index.html.erb - Project 6
+    Created 7/23/24 by Nicholas Colacarro -->
+
+<h1>Incorrect Choices for Question: <%= @question.content %></h1>
+
+<%= link_to 'New Incorrect Choice', new_question_incorrect_choice_path(@question) %>
+
+<ul>
+  <% @incorrect_choices.each do |incorrect_choice| %>
+    <li>
+      <%= incorrect_choice.option %>
+      <%= link_to 'Show', [@question, incorrect_choice] %>
+      <%= link_to 'Edit', edit_question_incorrect_choice_path(@question, incorrect_choice) %>
+      <%= link_to 'Destroy', [@question, incorrect_choice], method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back to Question', question_path(@question) %>

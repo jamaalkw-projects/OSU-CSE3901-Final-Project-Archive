@@ -4,6 +4,7 @@
     This controller handles the questions;
     all other routes are handled by Devise.
   Edited 07/23/24 by Nicholas Colacarro: Added edit and show
+  Edited 07/23/24 by Jamaal Wairegi: Edited for incorrect choices
 =end
 
 # Created 07/20/24 by Hengkai Zheng
@@ -32,6 +33,7 @@ class QuestionsController < ApplicationController
     @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.find(params[:id])
     @correct_choices = @question.correct_choices
+    @incorrect_choices = @question.incorrect_choices
   end
 
   def update

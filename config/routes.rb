@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :quizzes do
     resources :questions, only: [:new, :create, :show, :index, :edit, :update] do
       resources :correct_choices, only: [:new, :create, :update, :destroy]
+      resources :incorrect_choices, only: [:new, :create, :update, :destroy]
     end
       member do
         get 'study', to: 'study#show'
