@@ -40,6 +40,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @questions = @quiz.questions
     @first_question = @questions.first
+    @author = User.find(@quiz.user_id)
   end
 =begin
   Created on 07/19/24 by Sirojiddin Aripov
@@ -107,7 +108,7 @@ class QuizzesController < ApplicationController
   @returns n/a
 =end
   def quiz_params
-    params.require(:quiz).permit(:quiz_name)
+    params.require(:quiz).permit(:quiz_name, :user_id)
   end
 
 end

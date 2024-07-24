@@ -4,8 +4,9 @@
 # Edited 07/21/24 by Sirojiddin Aripov: Changed resources to generate all routes.
 # Edited 07/21/24 by Jamaal Wairegi: Edited devise routes for usernames
 # Edited 07/22/24 by Nicholas Colacarro: Edited/Added routes for studying. Deleted routes for quiz_information
-# Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes for correct choices for questions.
 # Edited 07/22/24 by Samuel Colston: Updated get user/edit route to include :id and added user update and delete route.
+# Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes for correct choices for questions.
+# Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes to submit answer and for end of quiz
 Rails.application.routes.draw do
   root "home#index"
   resources :rooms
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     end
       member do
         get 'study', to: 'study#show'
+        get 'end', to: 'study#end', as: 'end'
       end
   end
 
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
       get 'study', to: 'study#question'
     end
   end
+
+  post 'submit_answer', to: 'study#submit_answer'
 
   get 'questions/new'
   get 'questions/create'

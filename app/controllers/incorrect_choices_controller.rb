@@ -17,15 +17,6 @@ class IncorrectChoicesController < ApplicationController
 
   def create
     @incorrect_choice = @question.incorrect_choices.build(incorrect_choice_params)
-    if @incorrect_choice.save
-      redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Incorrect choice was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  def create
-    @incorrect_choice = @question.incorrect_choices.build(incorrect_choice_params)
     if @incorrect_choice.valid?
       @incorrect_choice.save
       redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Incorrect choice was successfully created.'
