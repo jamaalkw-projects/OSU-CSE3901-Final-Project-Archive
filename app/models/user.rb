@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :quizzes,   dependent: :destroy
 
-  has_many :room_users
+  has_many :room_users, dependent: :destroy
   has_many :rooms, through: :room_users
 
   validates :username, length: {minimum: 5}, allow_blank: false

@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :quizzes do
-    resources :rooms do
+    resources :rooms
+    resources :room_users  do
       member do
         post 'join'
       end

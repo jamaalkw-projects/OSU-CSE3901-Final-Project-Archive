@@ -1,2 +1,14 @@
-<p><%= @room.room_number %></p>
-<%= link_to "Join", quizzes_path, class: "btn btn-success"%>
+<h1><%= Quiz.find(params[:quiz_id]).quiz_name %></h1>
+
+<p>Join Code: <%= @room.room_number %></p>
+<h2>Users</h2>
+
+<div id="room_users">
+  <% room_users = RoomUser.where(room_id: @room.id) %>
+  <% for room_user in room_users do %>
+    <p><%= User.find(room_user.user_id).username %></p>
+  <% end %>
+</div>
+<% if !@room.users.include?(current_user) and user_signed_in? %>
+  <%= button_to 'Join Room', join_quiz_room_user_path(@room.quiz, @room), method: :post %>
+<% end %>
