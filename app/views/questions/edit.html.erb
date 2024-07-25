@@ -23,8 +23,10 @@
   <% @correct_choices.each do |choice| %>
     <li>
     <%= choice.option %>
-    <%= form_with url: quiz_question_correct_choice_path(@quiz, @question, choice), method: :delete, local: true do |form| %>
-      <%= form.submit "Remove", class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
+    <% if @correct_choices.length > 1 %>
+      <%= form_with url: quiz_question_correct_choice_path(@quiz, @question, choice), method: :delete, local: true do |form| %>
+        <%= form.submit "Remove", class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
+      <% end %>
     <% end %>
   </li>
   <% end %>
@@ -34,8 +36,10 @@
   <% @incorrect_choices.each do |choice| %>
     <li>
     <%= choice.option %>
-    <%= form_with url: quiz_question_incorrect_choice_path(@quiz, @question, choice), method: :delete, local: true do |form| %>
-      <%= form.submit "Remove", class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
+    <% if @incorrect_choices.length > 1 %>
+      <%= form_with url: quiz_question_incorrect_choice_path(@quiz, @question, choice), method: :delete, local: true do |form| %>
+        <%= form.submit "Remove", class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
+      <% end %>
     <% end %>
   </li>
   <% end %>
