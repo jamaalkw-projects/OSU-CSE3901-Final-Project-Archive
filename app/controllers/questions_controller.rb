@@ -18,8 +18,7 @@ class QuestionsController < ApplicationController
     @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.build(question_params)
     if @question.save
-      flash[:notice] = 'Question was successfully created. Now add correct and incorrect choices.'
-      redirect_to new_quiz_question_correct_choice_path(@quiz, @question)
+      redirect_to new_quiz_question_correct_choice_path(@quiz, @question), notice: 'Question was successfully created. Now add correct and incorrect choices.'
     else
       render :new
     end

@@ -52,12 +52,4 @@ Rails.application.routes.draw do
   get "/users/edit/:id", to: "users_view#edit", as: 'user_edit'
   put "/users/edit/:id", to: "users#update"
   delete "/users/edit/:id", to: "users#delete"
-  
-
-  
-
-
-
-  # Join game route
-  get "/join_game", to: "join_game#index"
 end

@@ -1,6 +1,7 @@
 <!-- Edited 07/20/24 by Jamaal Wairegi: Added button to users page 
      Edited 07/24/24 by Jamaal Wairegi: Displays three most recently created quizzes from user -->
 <% provide(:title, "Home - QuizGem") %>
+<% @quizzes = @quizzes.reverse%>
 <% can_create_quiz = user_signed_in? %>
 
 <h1>Home Page</h1>
@@ -10,7 +11,7 @@
   <% if @quizzes.length > 0 %>
     <% @quizzes.length.times do |quiz| %>
       <% break if quiz > 2 %>
-      <li> <%= link_to "#{@quizzes[quiz].quiz_name}", "#{quizzes_path}/#{@quizzes[quiz].id}" %> </li>
+      <li> <%= link_to "#{@quizzes[quiz].quiz_name}", "#{quizzes_path}/#{@quizzes[quiz].id}" %> by <%= link_to "#{User.find(@quizzes[quiz].user_id).username}", "#{users_path}/#{@quizzes[quiz].user_id}" %> </li>
     <% end %>
   <% else %>
     No quizzes created.
