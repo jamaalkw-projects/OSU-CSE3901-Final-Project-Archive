@@ -1,0 +1,10 @@
+<!-- _show.html.erb - Project 6
+    Created 7/24/24 by Samuel Colston. -->
+
+<p>Your accuracy is: 
+    <% if @score.answered %>
+    <%= 100 %>
+    <% else %>
+    <%= (@score.answered_correct.to_f / @score.answered.to_f * 100).round(2) %>
+    <% end %>
+%</p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_154449) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_25_022125) do
   create_table "correct_choices", force: :cascade do |t|
     t.string "option"
     t.integer "question_id", null: false
@@ -47,6 +47,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_154449) do
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
+  create_table "scoreboards", force: :cascade do |t|
+    t.integer "quizzes_id", null: false
+    t.integer "user_id", null: false
+    t.integer "answered_correct", default: 0
+    t.integer "answered", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quizzes_id"], name: "index_scoreboards_on_quizzes_id"
+    t.index ["user_id"], name: "index_scoreboards_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,10 +69,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_154449) do
     t.string "username", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username"
   end
 
   add_foreign_key "correct_choices", "questions"
   add_foreign_key "incorrect_choices", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "users"
+  add_foreign_key "scoreboards", "quizzes", column: "quizzes_id"
+  add_foreign_key "scoreboards", "users"
 end
