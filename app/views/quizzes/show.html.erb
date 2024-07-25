@@ -24,7 +24,7 @@
 <%= link_to("Edit this Quiz", edit_quiz_path(@quiz), class: "d-inline btn btn-info text-white") if owns_quiz %>
 <%= button_to("Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger") if owns_quiz %>
 <% if @first_question %>
-  <%= link_to 'Study', study_question_path(@first_question), class: 'btn btn-primary' %>
+  <%= link_to 'Study', study_quiz_path(@first_question.quiz_id), class: 'btn btn-primary' %>
 <% else %>
   <p>No questions available to study.</p>
 <% end %>

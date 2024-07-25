@@ -5,3 +5,4 @@
 <h1>Quiz Completed</h1>
 <p>Click below to study the quiz again!</p>
 <%= link_to 'Start Over', study_question_path(@quiz.questions.first, quiz_id: @quiz.id), class: 'btn btn-primary' %>
+<%= link_to "Back to Quizzes", quizzes_path, class: "btn btn-success"%>
