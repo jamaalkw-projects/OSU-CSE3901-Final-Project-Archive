@@ -1,11 +1,23 @@
-<!-- Edited 07/20/24 by Jamaal Wairegi: Added button to users page -->
+<!-- Edited 07/20/24 by Jamaal Wairegi: Added button to users page 
+     Edited 07/24/24 by Jamaal Wairegi: Displays three most recently created quizzes from user -->
+<% provide(:title, "Home - QuizGem") %>
 <% can_create_quiz = user_signed_in? %>
 
 <h1>Home Page</h1>
-<p>Profile partial on the left</p>
-<p>The quizzes</p>
-<p>users</p>
-<p>Find me in app/views/home/index.html.erb</p>
+<div>
+  <strong>Most recent quizzes created:</strong>
+  <ul>
+  <% if @quizzes.length > 0 %>
+    <% @quizzes.length.times do |quiz| %>
+      <% break if quiz > 2 %>
+      <li> <%= link_to "#{@quizzes[quiz].quiz_name}", "#{quizzes_path}/#{@quizzes[quiz].id}" %> </li>
+    <% end %>
+  <% else %>
+    No quizzes created.
+  <% end %>
+  </ul>
+  <%= link_to "All Quizzes", quizzes_path, class: "btn btn-success"%>
+  <%= link_to "Create Quiz", new_quiz_path, class: "btn btn-success" if can_create_quiz %>
+<div>
+
 <%= link_to "All Users", users_path, class: "btn btn-success"%>
-<%= link_to "All Quizzes", quizzes_path, class: "btn btn-success"%>
-<%= link_to "Create Quiz", new_quiz_path, class: "btn btn-success" if can_create_quiz %>

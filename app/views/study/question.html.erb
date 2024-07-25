@@ -6,8 +6,18 @@
 <p><%= @question.content %></p>
 
 <!-- Shuffles all possible choices and lists them. -->
-<% choices = @question.incorrect_choices.map(&:option) + [@question.correct_choices.map(&:option)] %>
-<% choices.shuffle.each do |choice| %>
+<% incorrect_choices = @question.incorrect_choices.map(&:option) %>
+<% correct_choices = @question.correct_choices.map(&:option) %>
+<% incorrect_choices.shuffle.each do |choice| %>
+  <div>
+    <%= form_with url: submit_answer_path, method: :post do %>
+      <%= hidden_field_tag :question_id, @question.id %>
+      <%= hidden_field_tag :selected_choice, choice %>
+      <%= submit_tag choice, class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
+<% end %>
+<% correct_choices.shuffle.each do |choice| %>
   <div>
     <%= form_with url: submit_answer_path, method: :post do %>
       <%= hidden_field_tag :question_id, @question.id %>
