@@ -3,21 +3,24 @@
      Edited 07/20/24 by Hengkai Zheng 
      Edited 07/22/24 by Nicholas Colacarro: Added button to study quiz
      Edited 07/23/24 by Nicholas Colacarro: Added button edit each question and changed to numbered list -->
-
 <% owns_quiz = (user_signed_in?) && (@quiz.user_id == current_user.id) %>
 
 <h1><%= @quiz.quiz_name %></h1>
 <h3>Author: <%= link_to "#{@author.username}", "#{users_path}/#{@author.id}" %></h3>
 
-<% if owns_quiz %>
-<h2>Questions</h2>
-<ol>
-  <% @quiz.questions.each do |question| %>
-    <li><%= question.content %>
-    <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
-    </li>
+<% if @quiz.questions.length > 0 %>
+  <% if owns_quiz %>
+  <h2>Questions</h2>
+  <ol>
+    <% @quiz.questions.each do |question| %>
+      <li><%= question.content %>
+      <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
+      </li>
+    <% end %>
+  </ol>
+  <% else %>
+    <h2> <%= (@quiz.questions.length > 1) ? "This quiz contains #{@quiz.questions.length} questions." : "This quiz contains 1 question."%></h2>
   <% end %>
-</ol>
 <% end %>
 
 <%= link_to('Add Question', new_quiz_question_path(@quiz), class: 'btn btn-primary') if owns_quiz %>
@@ -26,7 +29,7 @@
 <%= link_to("See Live Sessions", quiz_rooms_path(@quiz), class: "d-inline btn btn-info text-white") %>
 <%= button_to("Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger") if owns_quiz %>
 <% if @first_question %>
-  <%= link_to 'Study', study_question_path(@first_question), class: 'btn btn-primary' %>
+  <%= link_to 'Study', study_quiz_path(@first_question.quiz_id), class: 'btn btn-primary' %>
 <% else %>
   <p>No questions available to study.</p>
 <% end %>

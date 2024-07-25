@@ -1,14 +1,27 @@
 <!-- show.html.erb - Project 6
      Created 07/20/24 by Jamaal Wairegi
-     Edited 07/20/24 by Jamaal Wairegi: Changes based on if user is logged in on their profile -->
-<% yield @user %>
-<% yield @quizzes %>
+     Edited 07/20/24 by Jamaal Wairegi: Changes based on if user is logged in on their profile 
+     Edited 07/24/24 by Jamaal Wairegi: Displays three most recently created quizzes from user -->
+<% @quizzes = @quizzes.reverse[0..2] %>
 
 <% if user_signed_in? and @user.id == current_user.id %>
     <p>Welcome to your profile!</p>
 <% end %>
 
 <%= render @user %>
+
+<div>
+  <strong>Most recent quizzes from <em><%= "#{@user.username}" %></em>:</strong>
+  <ul>
+  <% if !@quizzes.empty? %>
+    <% @quizzes.length.times do |quiz| %>
+      <li> <%= link_to "#{@quizzes[quiz].quiz_name}", "#{quizzes_path}/#{@quizzes[quiz].id}" %> </li>
+    <% end %>
+  <% else %>
+    No quizzes created.
+  <% end %>
+  </ul>
+<div>
 
 <div>
   <% if user_signed_in? and @user.id == current_user.id %>

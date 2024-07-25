@@ -3,5 +3,8 @@
     Edited 7/23/24 by Nicholas Colacarro: added score of quiz and link to retake quiz. -->
 
 <h1>Quiz Completed</h1>
-<p>You answered <%= @score %> out of <%= @total_questions %> questions correctly.</p>
+<p>Click below to study the quiz again!</p>
 <%= link_to 'Start Over', study_question_path(@quiz.questions.first, quiz_id: @quiz.id), class: 'btn btn-primary' %>
+<%= link_to 'Back to Quiz Page', "#{quizzes_path}/#{@quiz.id}", class: 'btn btn-primary' %>
+<%= link_to "Back to Quizzes", quizzes_path, class: "btn btn-success"%>
+<%= link_to 'Back to Home Page', root_url, class: 'btn btn-primary' %>

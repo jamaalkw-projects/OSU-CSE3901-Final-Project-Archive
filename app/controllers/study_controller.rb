@@ -3,6 +3,7 @@
   Created 07/22/24 by Nicholas Colacarro:
     This controller handles the pages for studying;
   Edited 07/23/24 by Nicholas Colacarro: Added score and handling submitting answers
+  Edited 07/23/24 by Nicholas Colacarro: Removed score.
 =end
 
 class StudyController < ApplicationController
@@ -10,7 +11,6 @@ class StudyController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @questions = @quiz.questions.order(:created_at)
     @first_question = @questions.first
-    session[:score] = 0;
     session[:total_questions] = @questions.count
   end
 
@@ -20,8 +20,12 @@ class StudyController < ApplicationController
     @question_index = @questions.index(@question) + 1
     @total_questions = @questions.count
 
+    # Determine if choices should be shuffled
+    @shuffle_choices = session[:shuffled_choices] || false
+    session[:shuffled_choices] = false
+
     session[:answered_questions] ||= []
-  end
+end
 
   def next_question
     question = Question.find(params[:id])
@@ -29,8 +33,11 @@ class StudyController < ApplicationController
     @questions = @quiz.questions.order(:created_at)
     @current_question = @questions.find_by(id: params[:id])
     @next_question = @questions.where('created_at > ?', @current_question.created_at).first
-
-    #Go to next question or go to end quiz screen if on last question.
+  
+    # Store the shuffle state in session
+    session[:shuffled_choices] = true
+  
+    # Go to next question or go to end quiz screen if it is the last question.
     if @next_question
       redirect_to study_question_path(@next_question, quiz_id: @quiz.id)
     else
@@ -43,7 +50,7 @@ class StudyController < ApplicationController
     @questions = @quiz.questions.order(:created_at)
     @current_question = @questions.find_by(id: params[:id])
     @previous_question = @questions.where('created_at < ?', @current_question.created_at).last
-
+  
     if @previous_question
       redirect_to study_question_path(@previous_question, quiz_id: @quiz.id)
     else
@@ -54,41 +61,21 @@ class StudyController < ApplicationController
   def submit_answer
     question = Question.find(params[:question_id])
     selected_choice = params[:selected_choice]
-
-    # Check to see if question has already been answered.
-    answered_questions = session[:answered_questions] || []
-    if answered_questions.include?(question.id)
-      redirect_to next_question_path(question, quiz_id: question.quiz_id) and return
-    end
-
-    #Check to see if selected choice is correct, add +1 to score if so.
+  
+    # Check to see if selected choice is correct.
     correct_options = question.correct_choices.pluck(:option)
     correct = correct_options.include?(selected_choice)
-    session[:score] ||= 0
-    session[:score] += 1 if correct 
-
-    answered_questions << question.id
-    session[:answered_questions] = answered_questions
-
-    @questions = question.quiz.questions.order(:created_at)
-    current_index = @questions.index(question)
-    total_questions = @questions.count
-    # Check to see if user is on the last question, end quiz if so.
-    if current_index < total_questions - 1
-      next_question = @questions[current_index + 1]
-      redirect_to study_question_path(next_question, quiz_id: question.quiz_id)
-    else
-      redirect_to end_quiz_path(question.quiz_id)
+    session[:selected_choice] = selected_choice
+  
+    # Redirect to the same question to show if choice was correct.
+    redirect_to study_question_path(question, quiz_id: question.quiz_id, selected_choice: selected_choice)
   end
-end
 
   def end
     @quiz = Quiz.find(params[:id])
     
-    @score = session[:score] || 0
+    session[:shuffled_choices] = nil  
     @total_questions = session[:total_questions] || @quiz.questions.count
-
-    session[:score] = nil
     session[:total_questions] = nil
   end
 end

@@ -11,7 +11,7 @@
   <div>
     <%= form.label :quiz_name, style: "padding-end: 0.1vw", :class => "form-label" %>
     <%= form.text_field :quiz_name, :class => "form-control"  %>
-    <% if action == "Create" %>
+    <% if action == "Create" and user_signed_in? %>
       <%= form.hidden_field :user_id, :value => current_user.id %>
     <% end %>
   </div>

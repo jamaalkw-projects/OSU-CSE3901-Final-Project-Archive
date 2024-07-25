@@ -3,12 +3,15 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Users</h1>
-
 <div id="users">
+<% if @users.length != 0 %>
   <% @users.each do |user| %>
     <%= render user %>
     <p>
       <%= link_to "Show this user", "#{users_path}/#{user.id}" %>
     </p>
   <% end %>
+<% else %>
+  <p>No users have been created yet.</p>
+<% end %>
 </div>
