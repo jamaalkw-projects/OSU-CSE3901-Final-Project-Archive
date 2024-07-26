@@ -1,34 +1,46 @@
 <!-- show.html.erb - Project 6
     Created 7/22/24 by Nicholas Colacarro
-    Edited 7/23/24 by Nicholas Colacarro: Added all choices shuffled with button to submit. -->
+    Edited 7/23/24 by Nicholas Colacarro: Added all choices shuffled with button to submit. 
+    Edited 7/26/24 by Nicholas Colacarro: Added jQuery code to make buttons the correct colors. -->
 
 <h1>Question <%= @question_index %> of <%= @total_questions %></h1>
 <p><%= @question.content %></p>
 
-<!-- Shuffle all possible choices based on @shuffle_choices -->
-<% choices = @question.incorrect_choices.map(&:option) + @question.correct_choices.map(&:option) %>
-<% choices = choices.shuffle if @shuffle_choices %>
-<% choices.each do |choice| %>
+<!-- Use the stored order of choices from the session -->
+<% @choices.each do |choice| %>
   <% choice_correct = @question.correct_choices.map(&:option).include?(choice) %>
-  <% choice_status = params[:selected_choice] == choice ? (choice_correct ? 'correct' : 'incorrect') : '' %>
   <div>
-    <%= form_with url: submit_answer_path, method: :post, local: true do %>
-      <%= hidden_field_tag :question_id, @question.id %>
+    <%= form_with url: submit_answer_path, method: :post, local: true, html: { class: 'answer-form' } do %>
+      <%= hidden_field_tag :question_id, @question.id, data: { choice_correct: choice_correct, choice: choice } %>
       <%= hidden_field_tag :selected_choice, choice %>
-      <%= submit_tag choice, class: "btn btn-secondary #{choice_status}" %>
+      <%= submit_tag choice, class: 'btn btn-secondary' %>
     <% end %>
   </div>
 <% end %>
 <br>
 <!-- Buttons for previous and next questions. -->
 <div>
-    <% if Question.where("id < ?", @question.id).last %>
-        <%= link_to 'Previous', previous_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
-    <% end %>
-    <% if Question.where("id > ?", @question.id).first %>
-        <%= link_to 'Next Question', next_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
-    <% end %>
+    <%= link_to 'Previous', previous_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
+    <%= link_to 'Next Question', next_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
 </div>
+
+<!-- Jquery code to change button colors. -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.answer-form').on('submit', function(event) {
+      event.preventDefault();
+
+      var formData = $(this).serializeArray();
+      var selectedChoice = formData.find(field => field.name === 'selected_choice').value;
+      var choiceCorrect = $(this).find('input[name="question_id"]').data('choiceCorrect') === true;
+
+      var $submitButton = $(this).find('input[type="submit"]');
+      $submitButton.toggleClass('correct', choiceCorrect);
+      $submitButton.toggleClass('incorrect', !choiceCorrect);
+    });
+  });
+</script>
 
 
     
