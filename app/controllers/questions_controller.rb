@@ -14,11 +14,12 @@ class QuestionsController < ApplicationController
     @question = @quiz.questions.build
   end
 
+  # Edited 07/26/24 by Jamaal Wairegi: Now redirects to question edit page
   def create
     @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.build(question_params)
     if @question.save
-      redirect_to new_quiz_question_correct_choice_path(@quiz, @question), notice: 'Question was successfully created. Now add correct and incorrect choices.'
+      redirect_to edit_quiz_question_path(@quiz, @question), notice: 'Question was successfully created. Note that all questions must have at least one correct and one incorrect question to have the entire quiz be playable.'
     else
       render :new
     end

@@ -16,11 +16,12 @@ class CorrectChoicesController < ApplicationController
       @correct_choice = @question.correct_choices.build
     end
 
+    # Edited 07/24/24 by Jamaal Wairegi: Redirect to incorrect choice only if question was just created (force at least two choices)
     def create
       @correct_choice = @question.correct_choices.build(correct_choice_params)
       if @correct_choice.valid?
         @correct_choice.save
-        redirect_to new_quiz_question_incorrect_choice_path(@question.quiz, @question), notice: 'Correct choice was successfully created.'
+        redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Correct choice was successfully created.'
       else
         redirect_to new_quiz_question_correct_choice_path(@question.quiz, @question), alert: @correct_choice.errors.to_hash
       end

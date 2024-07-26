@@ -31,6 +31,8 @@ class QuizzesController < ApplicationController
   end
 =begin
   Created on 07/19/24 by Sirojiddin Aripov
+  Edited 07/26/24 by Jamaal Wairegi: 
+    Added boolean value @able_to_study to check if quiz is playable.
   @description shows a single quiz in show.html.erb layout based on ID
   @updates @quiz in show.html.erb
   @params id is needed in the params AKA in the URL
@@ -41,6 +43,20 @@ class QuizzesController < ApplicationController
     @questions = @quiz.questions
     @first_question = @questions.first
     @author = User.find(@quiz.user_id)
+
+    # if quiz has at least one question, and if all questions have at least
+    # one correct and one incorrect choice, it is playable.
+    @able_to_study = true
+    if (!@first_question)
+      @able_to_study = false
+    else
+      @questions.each do |question| 
+        if (question.correct_choices.length < 1) or (question.incorrect_choices.length < 1)
+          @able_to_study = false
+          break
+        end
+      end
+    end
   end
 =begin
   Created on 07/19/24 by Sirojiddin Aripov

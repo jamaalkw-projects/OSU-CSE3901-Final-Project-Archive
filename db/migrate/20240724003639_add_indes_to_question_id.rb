@@ -1,3 +1,5 @@
+# Created 07/22/24 by Jamaal Wairegi
+
 class AddIndesToQuestionId < ActiveRecord::Migration[7.1]
   def change
     add_index :incorrect_choices, :question_id

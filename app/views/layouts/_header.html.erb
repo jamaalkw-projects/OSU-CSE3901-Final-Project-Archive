@@ -38,7 +38,7 @@
         <button type="button" class="btn btn-secondary" id="searchQuiz">Search Quizzes</button>
         <button type="button" class="btn btn-secondary" id="searchUsers">Search Users</button>
       </div>
-      <!-- Edited 07/22/24 by Jamaal Wairegi: Added Join Multiplayer Game form to header; will lead to host page of code once implemented -->
+      <!-- Edited 07/22/24 by Jamaal Wairegi: Added Join Multiplayer Game form to header -->
       <% if user_signed_in? %>
         <form class="d-flex" id="searchForm" role="query" action="<%= root_url %>" method="get">
           <input class="form-control me-2" type="query" placeholder="Code" aria-label="Search">

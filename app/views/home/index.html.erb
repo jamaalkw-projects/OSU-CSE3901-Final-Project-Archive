@@ -1,24 +1,24 @@
 <!-- Edited 07/20/24 by Jamaal Wairegi: Added button to users page 
-     Edited 07/24/24 by Jamaal Wairegi: Displays three most recently created quizzes from user -->
+     Edited 07/24/24 by Jamaal Wairegi: Displays three most recently created quizzes from user
+     Edited 07/26/24 by Jamaal Wairegi: Added check for if users and quizzes exist -->
 <% provide(:title, "Home - QuizGem") %>
-<% @quizzes = @quizzes.reverse%>
-<% can_create_quiz = user_signed_in? %>
+<% @quizzes = @quizzes.reverse %>
 
 <h1>Home Page</h1>
 <div>
   <strong>Most recent quizzes created:</strong>
   <ul>
-  <% if @quizzes.length > 0 %>
+  <% if ((@quizzes != nil) and (@quizzes.length > 0)) and ((@users != nil) and (@users.length > 0)) %>
     <% @quizzes.length.times do |quiz| %>
       <% break if quiz > 2 %>
       <li> <%= link_to "#{@quizzes[quiz].quiz_name}", "#{quizzes_path}/#{@quizzes[quiz].id}" %> by <%= link_to "#{User.find(@quizzes[quiz].user_id).username}", "#{users_path}/#{@quizzes[quiz].user_id}" %> </li>
     <% end %>
   <% else %>
-    No quizzes created.
+    No quizzes published.
   <% end %>
   </ul>
   <%= link_to "All Quizzes", quizzes_path, class: "btn btn-success"%>
-  <%= link_to "Create Quiz", new_quiz_path, class: "btn btn-success" if can_create_quiz %>
+  <%= link_to "Create Quiz", new_quiz_path, class: "btn btn-success" if user_signed_in? %>
   <%= link_to "All Users", users_path, class: "btn btn-success"%>
 </div>
 
