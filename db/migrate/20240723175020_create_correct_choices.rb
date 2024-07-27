@@ -1,3 +1,5 @@
+# Created 07/23/2024 by Nicholas Colacarro.
+
 class CreateCorrectChoices < ActiveRecord::Migration[7.1]
   def change
     create_table :correct_choices do |t|

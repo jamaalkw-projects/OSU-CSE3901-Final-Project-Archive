@@ -8,6 +8,11 @@
 =end
 
 class StudyController < ApplicationController
+  # Created 07/24/24 by Nick Colacarro
+  # @description: shows the questions of a single quiz.
+  # @updates: @quiz, @questions, and @first_question to be used in show.html.erb
+  # @params: [Integer] :id - ID of the quiz
+  # @returns: N/A
   def show
     @quiz = Quiz.find(params[:id])
     @questions = @quiz.questions.order(:created_at)
@@ -16,6 +21,11 @@ class StudyController < ApplicationController
     session[:shuffled_choices] = true 
   end
 
+  # Created 07/24/24 by Nick Colacarro
+  # @description: Shows a specific question of the quiz
+  # @updates: @question, @questions, @question_index, and @total_questions to be used in question.html.erb
+  # @params: [Integer] :id - ID of the question.
+  # @returns: N/A
   def question
     @question = Question.find(params[:id])
     @questions = @question.quiz.questions.order(:created_at)
@@ -43,7 +53,11 @@ class StudyController < ApplicationController
     session[:answered_questions] ||= []
   end
 
-
+  # Created 07/24/24 by Nick Colacarro
+  # @description: Redirects to next question or end quiz.
+  # @updates: session[:shuffled_choices] - Boolean to indicate if choices need to be shuffled.
+  # @params: [Integer] :id - ID of the question. [Integer] :quiz_id - ID of the quiz.
+  # @returns: [Redirect] Redirects to next question or end quiz.
   def next_question
     question = Question.find(params[:id])
     @quiz = Quiz.find(params[:quiz_id])
@@ -60,7 +74,11 @@ class StudyController < ApplicationController
       redirect_to end_quiz_path(question.quiz_id)
     end
   end
-
+  # Created 07/24/24 by Nick Colacarro   
+  # @description: Redirects to previous question or quiz overview.
+  # @updates: N/A
+  # @params: [Integer] :id - ID of the question. [Integer] :quiz_id - ID of the quiz.
+  # @returns: [Redirect] Redirects to previous question or quiz overview.
   def previous_question
     @quiz = Quiz.find(params[:quiz_id])
     @questions = @quiz.questions.order(:created_at)
@@ -75,6 +93,12 @@ class StudyController < ApplicationController
     end
   end
 
+  # Created 07/24/24 by Nick Colacarro
+  # @description: Redirects to next question or end quiz.
+  # @updates: session[:shuffled_choices]: Set to nil to reset shuffle state.
+  #           session[:total_questions]: Set to nil to reset question count.
+  # @params: [Integer] :id - ID of the quiz.
+  # @returns: N/A
   def end
     @quiz = Quiz.find(params[:id])
     
