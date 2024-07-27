@@ -1,14 +1,15 @@
 <!-- show.html.erb - Project 6
-    Created 7/22/24 by Nicholas Colacarro -->
+    Created 7/22/24 by Nicholas Colacarro 
+    Edited 7/27/24 by Nicholas Colacarro: Changed questions to an ordered list. -->
     
 <h1>Study for <%= @quiz.quiz_name %></h1>
 
 <h2>Questions</h2>
-<ul>
+<ol>
     <% @questions.each do |question| %>
         <li><%= question.content %></li>
     <% end %>
-</ul>
+</ol>
 
 <% if @first_question %>
     <%= link_to 'Start Study', study_question_path(@first_question, quiz_id: @quiz.id), class: 'btn btn-primary' %>

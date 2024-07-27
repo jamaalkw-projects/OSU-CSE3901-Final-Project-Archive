@@ -1,22 +1,25 @@
 <!-- show.html.erb - Project 6
     Created 7/22/24 by Nicholas Colacarro
     Edited 7/23/24 by Nicholas Colacarro: Added all choices shuffled with button to submit. 
-    Edited 7/26/24 by Nicholas Colacarro: Added jQuery code to make buttons the correct colors. -->
+    Edited 7/26/24 by Nicholas Colacarro: Added jQuery code to make buttons the correct colors. 
+    Edited 7/27/24 by Nicholas Colacarro: Made choices be listed out with letters. -->
 
 <h1>Question <%= @question_index %> of <%= @total_questions %></h1>
 <p><%= @question.content %></p>
 
 <!-- Use the stored order of choices from the session -->
+<ol style="list-style-type: lower-alpha;">
 <% @choices.each do |choice| %>
   <% choice_correct = @question.correct_choices.map(&:option).include?(choice) %>
-  <div>
+  <li>
     <%= form_with url: submit_answer_path, method: :post, local: true, html: { class: 'answer-form' } do %>
       <%= hidden_field_tag :question_id, @question.id, data: { choice_correct: choice_correct, choice: choice } %>
       <%= hidden_field_tag :selected_choice, choice %>
       <%= submit_tag choice, class: 'btn btn-secondary' %>
     <% end %>
-  </div>
+  </li>
 <% end %>
+</ol>
 <br>
 <!-- Buttons for previous and next questions. -->
 <div>
