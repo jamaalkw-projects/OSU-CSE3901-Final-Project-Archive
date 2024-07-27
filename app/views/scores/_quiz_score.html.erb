@@ -3,8 +3,8 @@
 
 <p>Your accuracy is: 
     <% if @score.answered %>
-    <%= 100 %>
+        <%= "100" %>
     <% else %>
-    <%= (@score.answered_correct.to_f / @score.answered.to_f * 100).round(2) %>
+        <%= (@score.answered_correct.to_f / @score.answered.to_f * 100).round(2) %>
     <% end %>
 %</p>

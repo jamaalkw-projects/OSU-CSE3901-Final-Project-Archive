@@ -15,14 +15,6 @@ class StudyController < ApplicationController
   end
 
   def question
-    @score = Scoreboard.find_by(quizzes_id: params[:quizzes_id], user_id: current_user.id)
-    unless @score
-      @score = Scoreboard.new(quizzes_id: params[:quizzes_id], user_id: current_user.id, answered: 0, answered_correct: 0)
-      if @score.valid?
-        @score.save
-      end
-    end
-
     @question = Question.find(params[:id])
     @questions = @question.quiz.questions.order(:created_at)
     @question_index = @questions.index(@question) + 1

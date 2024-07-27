@@ -25,6 +25,14 @@
 <%= button_to("Delete this Quiz", @quiz, method: :delete,class: "btn btn-danger") if owns_quiz %>
 <% if @first_question %>
   <%= link_to 'Study', study_question_path(@first_question), class: 'btn btn-primary' %>
+  <%= link_to 'View Scores', quiz_scores_path(@quiz), class: 'btn btn-primary' %>
+  <% if user_signed_in? %>
+    <% if @score %>
+      <%= link_to 'View My Score', quiz_score_path(@quiz, @score), class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to 'View My Score', new_quiz_score_path(@quiz), class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
 <% else %>
   <p>No questions available to study.</p>
 <% end %>

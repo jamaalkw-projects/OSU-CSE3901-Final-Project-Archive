@@ -11,7 +11,11 @@
   </div>
 <% end %>
 
-<%= button_to 'Delete', user_edit_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if flash[:error].present? %>
+  <div class="error-message">
+    <%= flash[:error] %>
+  </div>
+<% end %>
 
-
+<%= button_to 'Delete', user_edit_path(@user), method: :delete %>
 <%= link_to "Back", :back %>

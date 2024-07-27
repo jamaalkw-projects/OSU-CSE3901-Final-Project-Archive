@@ -1,0 +1,10 @@
+<!-- Created 07/26/24 by Samuel Colston -->
+<h1>Your Score:</h1>
+<p>Your accuracy for this quiz is: 
+    <% if @score.answered %>
+        <%= "100" %>
+    <% else %>
+        <%= (@score.answered_correct.to_f / @score.answered.to_f * 100).round(2) %>
+    <% end %>
+%</p>
+<%= button_to "Delete", quiz_score_path(@quiz, @score), method: :delete, class: 'btn btn-primary' %>

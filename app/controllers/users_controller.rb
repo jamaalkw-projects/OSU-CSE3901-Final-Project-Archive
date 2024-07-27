@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   # Created 07/22/24 by Samuel Colston
   #   Created 'update' action. This action allows the user to update their username.
   def user_params
@@ -28,6 +32,7 @@ class UsersController < ApplicationController
     else
       Rails.logger.debug(@user.errors.full_messages)
       flash[:error] = @user.errors.full_messages.to_sentence
+      redirect_to :edit
     end
   end
 

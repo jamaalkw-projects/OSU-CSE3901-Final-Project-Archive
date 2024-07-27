@@ -37,6 +37,9 @@ class QuizzesController < ApplicationController
   @returns n/a
 =end
   def show
+    if user_signed_in?
+      @score = Scoreboard.find_by(quiz_id: params[:id], user_id: current_user.id)
+    end
     @quiz = Quiz.find(params[:id])
     @questions = @quiz.questions
     @first_question = @questions.first
