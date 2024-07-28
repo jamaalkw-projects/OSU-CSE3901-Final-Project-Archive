@@ -66,9 +66,9 @@ class StudyController < ApplicationController
     @questions = @quiz.questions.order(:created_at)
     @current_question = @questions.find_by(id: params[:id])
     @next_question = @questions.where('created_at > ?', @current_question.created_at).first
-  
+
     session[:shuffled_choices] = true
-  
+
     # Go to next question or go to end quiz screen if it is the last question.
     if @next_question
       redirect_to study_question_path(@next_question, quiz_id: @quiz.id)
@@ -77,7 +77,7 @@ class StudyController < ApplicationController
     end
   end
 
-  # Created 07/24/24 by Nick Colacarro   
+  # Created 07/24/24 by Nick Colacarro
   # @description: Redirects to previous question or quiz overview.
   # @updates: N/A
   # @params: [Integer] :id - ID of the question. [Integer] :quiz_id - ID of the quiz.
@@ -87,7 +87,7 @@ class StudyController < ApplicationController
     @questions = @quiz.questions.order(:created_at)
     @current_question = @questions.find_by(id: params[:id])
     @previous_question = @questions.where('created_at < ?', @current_question.created_at).last
-  
+
     # Go to the previous question or go to the study screen if it is the first question.
     if @previous_question
       redirect_to study_question_path(@previous_question, quiz_id: @quiz.id)
@@ -96,16 +96,48 @@ class StudyController < ApplicationController
     end
   end
 
-  # Created 07/24/24 by Nick Colacarro
-  # @description: Redirects to next question or end quiz.
-  # @updates: session[:shuffled_choices]: Set to nil to reset shuffle state.
-  #           session[:total_questions]: Set to nil to reset question count.
-  # @params: [Integer] :id - ID of the quiz.
-  # @returns: N/A
+ # Created 07/24/24 by Nick Colacarro
+  # Edited 07/27/24 by Sameul Colston : add track score
+  # Edited 07/27/24 by Hengkai Zheng : make it selectable and able to confirm before user decision
+  # @description: Handles the submission of selected answers for a question and provides feedback. (refactored the score)
+  # @updates: Sets flash messages for correct or incorrect answers, tracks scores.
+  # @params: [Array<String>] :selected_choices - Array of selected choices.
+  #          [Integer] :question_id - ID of the question.
+  #          [Integer] :quiz_id - ID of the quiz.
+  # @returns: [Redirect] Redirects to the same question with feedback.
+  def submit_answer
+    @question = Question.find(params[:question_id])
+    selected_choices = params[:selected_choices] || []
+
+    correct_choices = @question.correct_choices.map(&:option)
+    incorrect_choices = @question.incorrect_choices.map(&:option)
+
+    if (selected_choices - correct_choices).empty? && (correct_choices - selected_choices).empty?
+      flash[:correct] = "Correct! #{selected_choices.join(', ')} are the right answers."
+      session[:score] ||= 0
+      session[:score] += 1
+    else
+      flash[:incorrect] = "Incorrect! #{selected_choices.join(', ')} are not the right answers."
+    end
+
+    quiz_id = @question.quiz_id
+    @score = Scoreboard.find_or_create_by(quiz_id: quiz_id, user_id: current_user.id)
+    @score.answered += 1
+    @score.answered_correct += 1 if (selected_choices - correct_choices).empty? && (correct_choices - selected_choices).empty?
+    @score.save
+
+    # Check to see if question has already been answered.
+    answered_questions = session[:answered_questions] || []
+    answered_questions << @question.id unless answered_questions.include?(@question.id)
+    session[:answered_questions] = answered_questions
+
+    redirect_to study_question_path(@question, quiz_id: params[:quiz_id])
+  end
+
   def end
     @quiz = Quiz.find(params[:id])
-    
-    session[:shuffled_choices] = nil  
+
+    session[:shuffled_choices] = nil
     @total_questions = session[:total_questions] || @quiz.questions.count
     session[:total_questions] = nil
   end

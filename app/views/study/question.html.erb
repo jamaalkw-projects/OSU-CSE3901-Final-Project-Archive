@@ -1,33 +1,40 @@
-<!-- show.html.erb - Project 6
+<!-- question.html.erb - Project 6
     Created 7/22/24 by Nicholas Colacarro
     Edited 7/23/24 by Nicholas Colacarro: Added all choices shuffled with button to submit. 
     Edited 7/26/24 by Nicholas Colacarro: Added jQuery code to make buttons the correct colors. 
-    Edited 7/27/24 by Nicholas Colacarro: Made choices be listed out with letters. -->
+    Edited 7/27/24 by Nicholas Colacarro: Made choices be listed out with letters. 
+    Edited 7/27/24 by Hengkai Zheng: Added radio buttons for choices, confirmation button, and feedback logic. -->
 
 <h1>Question <%= @question_index %> of <%= @total_questions %></h1>
 <p><%= @question.content %></p>
 
 <!-- Use the stored order of choices from the session -->
-<ol style="list-style-type: lower-alpha;">
-<% @choices.each do |choice| %>
-  <% choice_correct = @question.correct_choices.map(&:option).include?(choice) %>
-  <li>
-    <%= form_with url: submit_answer_path, method: :post, local: true, html: { class: 'answer-form' } do %>
-      <%= hidden_field_tag :question_id, @question.id, data: { choice_correct: choice_correct, choice: choice } %>
-      <%= hidden_field_tag :selected_choice, choice %>
-      <%= submit_tag choice, class: 'btn btn-secondary' %>
+<%= form_with url: submit_answer_path, method: :post, local: true do %>
+  <div class="choices">
+    <% @choices.each do |choice| %>
+      <div>
+        <%= check_box_tag 'selected_choices[]', choice, false, id: choice %>
+        <%= label_tag choice %>
+      </div>
     <% end %>
-  </li>
+  </div>
+  <%= hidden_field_tag :question_id, @question.id %>
+  <%= hidden_field_tag :quiz_id, @question.quiz_id %>
+  <%= submit_tag 'Confirm', class: 'btn btn-primary' %>
 <% end %>
-</ol>
-<br>
+
+<% if flash[:correct] %>
+  <p class="alert alert-success"><%= flash[:correct] %></p>
+<% elsif flash[:incorrect] %>
+  <p class="alert alert-danger"><%= flash[:incorrect] %></p>
+<% end %>
 <!-- Buttons for previous and next questions. -->
 <div>
     <%= link_to 'Previous', previous_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
     <%= link_to 'Next', next_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
 </div>
 
-<!-- Jquery code to change button colors. -->
+<!-- jQuery code to change button colors. -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
@@ -44,6 +51,7 @@
     });
   });
 </script>
+
 
 
     
