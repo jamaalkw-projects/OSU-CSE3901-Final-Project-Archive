@@ -79,3 +79,9 @@
     border-color: #004085;
   }
   
+  /* Timer styles */
+#timer {
+  font-size: 24px;
+  font-weight: bold;
+  color :red;
+}

@@ -3,9 +3,14 @@
     Edited 7/23/24 by Nicholas Colacarro: Added all choices shuffled with button to submit. 
     Edited 7/26/24 by Nicholas Colacarro: Added jQuery code to make buttons the correct colors. 
     Edited 7/27/24 by Nicholas Colacarro: Made choices be listed out with letters. 
-    Edited 7/27/24 by Hengkai Zheng: Added radio buttons for choices, confirmation button, and feedback logic. -->
+    Edited 7/27/24 by Hengkai Zheng: Added radio buttons for choices, confirmation button, and feedback logic. 
+    Edited 7/27/24 by Hengkai Zheng: Added timer.-->
 
 <div class="study-container">
+ <!-- Timer -->
+  <div id="timer" class="text-center mb-3">
+    <h2>Time Remaining: <span id="time">1:00</span></h2>
+  </div>
   <div class="question-box">
 <h1>Question <%= @question_index %> of <%= @total_questions %></h1>
 <p><%= @question.content %></p>
@@ -50,9 +55,30 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
+    // Timer duration in seconds 
+    var timeRemaining = 60;
+
+    // Update the timer every second
+    var timerInterval = setInterval(function() {
+       
+      var minutes = Math.floor(timeRemaining / 60);
+      var seconds = timeRemaining % 60;
+      var timeString = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+      // Display the timer
+      $("#time").text(timeString);
+      timeRemaining--;
+
+      // Check if time is up
+      if (timeRemaining < 0) {
+        clearInterval(timerInterval);
+       $('input[type="submit"]').prop('disabled', true);
+       
+         }
+    }, 1000);
     $('.answer-form').on('submit', function(event) {
       event.preventDefault();
-
+      $('input[type="submit"]').prop('disabled', true);
       var formData = $(this).serializeArray();
       var selectedChoice = formData.find(field => field.name === 'selected_choice').value;
       var choiceCorrect = $(this).find('input[name="question_id"]').data('choiceCorrect') === true;
@@ -60,6 +86,8 @@
       var $submitButton = $(this).find('input[type="submit"]');
       $submitButton.toggleClass('correct', choiceCorrect);
       $submitButton.toggleClass('incorrect', !choiceCorrect);
+      
+      
     });
   });
 </script>

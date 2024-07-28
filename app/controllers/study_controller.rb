@@ -6,7 +6,7 @@
   Edited 07/23/24 by Nicholas Colacarro: Removed score.
   Edited 07/26/24 by Nicholas Colacarro: Got rid of submit_answer to be completed in the view with JavaScript.
   Edited 07/27/24 by Nicholas Colacarro: Update the study mode when new choices are added to the questions.
-   Edited 07/27/24 by Hengkai Zheng : make it selectable and able to confirm before user decision  in study mode
+   Edited 07/27/24 by Hengkai Zheng : make it selectable and able to confirm before user decision  in study
 =end
 
 class StudyController < ApplicationController
