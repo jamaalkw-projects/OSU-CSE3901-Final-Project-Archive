@@ -39,8 +39,7 @@ Rails.application.routes.draw do
 
   get 'questions/new'
   get 'questions/create'
-  get 'users/search', to: 'users#search', as: 'search_users'
-  get 'quiz_search/search', to: 'quiz_search#search', as: 'search_quiz_search'
+  get 'search', to: 'home#search', as: 'search'
 
   # get "/quizzes", to: "quizzes#index"
   # get "/quizzes/new", to: "quizzes#new"

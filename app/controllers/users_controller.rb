@@ -7,13 +7,7 @@
 # Created 07/20/24 by Hengkai Zheng
 #   Created 'search' action. This action search the user by its username
 class UsersController < ApplicationController
-  def search
-    if params[:query].present?
-      @users = User.where('username LIKE ?', "%#{params[:query]}%")
-    else
-      @users = User.none
-    end
-  end
+
 
   # Created 07/22/24 by Samuel Colston
   #   Created 'update' action. This action allows the user to update their username.

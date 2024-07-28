@@ -1,0 +1,26 @@
+<!-- app/views/home/search.html.erb -->
+
+<h1>Search Results</h1>
+
+<h2>Quizzes</h2>
+<% if @quizzes.any? %>
+  <ul>
+    <% @quizzes.each do |quiz| %>
+      <li><%= link_to quiz.quiz_name, quiz_path(quiz) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No quizzes found</p>
+<% end %>
+
+<h2>Users</h2>
+<% if @users.any? %>
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= link_to user.username, "#{users_path}/#{user.id}" %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No users found</p>
+<% end %>
+
