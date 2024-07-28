@@ -5,6 +5,7 @@
   Edited 07/23/24 by Nicholas Colacarro: Added score and handling submitting answers
   Edited 07/23/24 by Nicholas Colacarro: Removed score.
   Edited 07/26/24 by Nicholas Colacarro: Got rid of submit_answer to be completed in the view with JavaScript.
+  Edited 07/27/24 by Nicholas Colacarro: Update the study mode when new choices are added to the questions.
 =end
 
 class StudyController < ApplicationController
@@ -18,7 +19,8 @@ class StudyController < ApplicationController
     @questions = @quiz.questions.order(:created_at)
     @first_question = @questions.first
     session[:total_questions] = @questions.count
-    session[:shuffled_choices] = true 
+    session[:shuffled_choices] = true
+    session[:choices_order] = {}  # Clear the choices order session
   end
 
   # Created 07/24/24 by Nick Colacarro
@@ -74,6 +76,7 @@ class StudyController < ApplicationController
       redirect_to end_quiz_path(question.quiz_id)
     end
   end
+
   # Created 07/24/24 by Nick Colacarro   
   # @description: Redirects to previous question or quiz overview.
   # @updates: N/A
@@ -93,45 +96,12 @@ class StudyController < ApplicationController
     end
   end
 
-  def submit_answer
-    question = Question.find(params[:question_id])
-    selected_choice = params[:selected_choice]
-
-    #Check to see if selected choice is correct, add +1 to score if so.
-    correct_options = question.correct_choices.pluck(:option)
-    correct = correct_options.include?(selected_choice)
-    session[:score] ||= 0
-    session[:score] += 1 if correct 
-
-    quiz_id = question.quiz_id
-    @score = Scoreboard.find_by(quiz_id: quiz_id, user_id: current_user.id)
-    if @score
-      @score.answered += 1
-      @score.answered_correct += 1 if correct
-      @score.save
-    end
-
-    # Check to see if question has already been answered.
-    answered_questions = session[:answered_questions] || []
-    if answered_questions.include?(question.id)
-      redirect_to next_question_path(question, quiz_id: question.quiz_id) and return
-    end
-
-    answered_questions << question.id
-    session[:answered_questions] = answered_questions
-
-    @questions = question.quiz.questions.order(:created_at)
-    current_index = @questions.index(question)
-    total_questions = @questions.count
-    # Check to see if user is on the last question, end quiz if so.
-    if current_index < total_questions - 1
-      next_question = @questions[current_index + 1]
-      redirect_to study_question_path(next_question, quiz_id: question.quiz_id)
-    else
-      redirect_to end_quiz_path(question.quiz_id)
-  end
-end
-
+  # Created 07/24/24 by Nick Colacarro
+  # @description: Redirects to next question or end quiz.
+  # @updates: session[:shuffled_choices]: Set to nil to reset shuffle state.
+  #           session[:total_questions]: Set to nil to reset question count.
+  # @params: [Integer] :id - ID of the quiz.
+  # @returns: N/A
   def end
     @quiz = Quiz.find(params[:id])
     
