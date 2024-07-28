@@ -13,7 +13,7 @@
         <% if score.answered == 0 %>
             <%= "Not Yet Studied" %>
         <% else %>
-            <%= (score.answered_correct.to_f / score.answered.to_f * 100).round(2) %>
+            <%= (score.answered_correct.to_f / score.answered.to_f * 100).round(2) %>%
         <% end %>
         </td>
     </tr>

@@ -19,7 +19,6 @@ class StudyController < ApplicationController
     @questions = @question.quiz.questions.order(:created_at)
     @question_index = @questions.index(@question) + 1
     @total_questions = @questions.count
-
     session[:answered_questions] ||= []
   end
 
@@ -55,17 +54,25 @@ class StudyController < ApplicationController
     question = Question.find(params[:question_id])
     selected_choice = params[:selected_choice]
 
-    # Check to see if question has already been answered.
-    answered_questions = session[:answered_questions] || []
-    if answered_questions.include?(question.id)
-      redirect_to next_question_path(question, quiz_id: question.quiz_id) and return
-    end
-
     #Check to see if selected choice is correct, add +1 to score if so.
     correct_options = question.correct_choices.pluck(:option)
     correct = correct_options.include?(selected_choice)
     session[:score] ||= 0
     session[:score] += 1 if correct 
+
+    quiz_id = question.quiz_id
+    @score = Scoreboard.find_by(quiz_id: quiz_id, user_id: current_user.id)
+    if @score
+      @score.answered += 1
+      @score.answered_correct += 1 if correct
+      @score.save
+    end
+
+    # Check to see if question has already been answered.
+    answered_questions = session[:answered_questions] || []
+    if answered_questions.include?(question.id)
+      redirect_to next_question_path(question, quiz_id: question.quiz_id) and return
+    end
 
     answered_questions << question.id
     session[:answered_questions] = answered_questions

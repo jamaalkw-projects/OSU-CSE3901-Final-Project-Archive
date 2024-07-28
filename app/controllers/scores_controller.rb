@@ -1,3 +1,8 @@
+=begin
+  scores_controller.rb - Project 6
+  Created 07/24/24 by Samuel Colston
+    This controller handles the actions related to viewing and creating scores.
+=end
 class ScoresController < ApplicationController
   def index
     @scores = Scoreboard.where(quiz_id: params[:quiz_id])
@@ -32,5 +37,4 @@ class ScoresController < ApplicationController
     @score.destroy
     redirect_to new_quiz_score_path(@quiz)
   end
-  
 end
