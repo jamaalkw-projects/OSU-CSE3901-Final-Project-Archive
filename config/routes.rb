@@ -7,10 +7,12 @@
 # Edited 07/22/24 by Samuel Colston: Updated get user/edit route to include :id and added user update and delete route.
 # Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes for correct choices for questions.
 # Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes to submit answer and for end of quiz
+# Edited 07/26/24 by Samuel Colston: Added routes to view scoreboards.
 Rails.application.routes.draw do
   root "home#index"
 
   resources :quizzes do
+    resources :scores, only: [:index, :show, :new, :create, :destroy]
     resources :rooms
     resources :room_users  do
       member do

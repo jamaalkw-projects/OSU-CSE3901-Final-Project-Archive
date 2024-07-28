@@ -66,6 +66,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_142900) do
     t.index ["quiz_id"], name: "index_rooms_on_quiz_id"
   end
 
+  create_table "scoreboards", force: :cascade do |t|
+    t.integer "quiz_id", null: false
+    t.integer "user_id", null: false
+    t.integer "answered_correct", default: 0
+    t.integer "answered", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_scoreboards_on_quiz_id"
+    t.index ["user_id"], name: "index_scoreboards_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -87,4 +98,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_142900) do
   add_foreign_key "room_users", "rooms"
   add_foreign_key "room_users", "users"
   add_foreign_key "rooms", "quizzes"
+  add_foreign_key "scoreboards", "quizzes"
+  add_foreign_key "scoreboards", "users"
 end
