@@ -20,8 +20,8 @@ Rails.application.routes.draw do
       end
     end
     resources :questions, only: [:new, :create, :show, :index, :edit, :update, :destroy] do
-      resources :correct_choices, only: [:new, :create, :update, :destroy]
-      resources :incorrect_choices, only: [:new, :create, :update, :destroy]
+      resources :correct_choices
+      resources :incorrect_choices
     end
       member do
         get 'study', to: 'study#show'

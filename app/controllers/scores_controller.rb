@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:quiz_id])
-    @score = Scoreboard.find_by(quiz_id: params[:quiz_id], user_id: current_user.id)
+    @score = Scoreboard.find_by(quizzes_id: params[:quiz_id], user_id: current_user.id)
   end
   
   def new

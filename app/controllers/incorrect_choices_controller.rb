@@ -50,7 +50,7 @@ class IncorrectChoicesController < ApplicationController
     if @incorrect_choice.update(incorrect_choice_params)
       redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Incorrect choice was successfully updated.'
     else
-      render :edit
+      redirect_to edit_quiz_question_path(@question.quiz, @question), notice: 'Incorrect choice was NOT successfully updated (error).'
     end
   end
 
