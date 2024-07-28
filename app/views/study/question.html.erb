@@ -5,10 +5,14 @@
     Edited 7/27/24 by Nicholas Colacarro: Made choices be listed out with letters. 
     Edited 7/27/24 by Hengkai Zheng: Added radio buttons for choices, confirmation button, and feedback logic. -->
 
+<div class="study-container">
+  <div class="question-box">
 <h1>Question <%= @question_index %> of <%= @total_questions %></h1>
 <p><%= @question.content %></p>
+  </div>
 
 <!-- Use the stored order of choices from the session -->
+  <div class="answer-box">
 <%= form_with url: submit_answer_path, method: :post, local: true do %>
   <div class="choices">
     <% @choices.each do |choice| %>
@@ -22,16 +26,18 @@
   <%= hidden_field_tag :quiz_id, @question.quiz_id %>
   <%= submit_tag 'Confirm', class: 'btn btn-primary' %>
 <% end %>
-
+</div>
 <% if flash[:correct] %>
   <p class="alert alert-success"><%= flash[:correct] %></p>
 <% elsif flash[:incorrect] %>
   <p class="alert alert-danger"><%= flash[:incorrect] %></p>
 <% end %>
+
 <!-- Buttons for previous and next questions. -->
-<div>
+ <div class="navigation-buttons">
     <%= link_to 'Previous', previous_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
     <%= link_to 'Next', next_question_path(@question, quiz_id: @question.quiz_id), class: 'btn btn-primary' %>
+</div>
 </div>
 
 <!-- jQuery code to change button colors. -->
@@ -53,6 +59,4 @@
 </script>
 
 
-
-    
 
