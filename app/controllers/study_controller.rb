@@ -101,6 +101,7 @@ class StudyController < ApplicationController
   # Edited 07/27/24 by Sameul Colston : add track score
   # Edited 07/27/24 by Hengkai Zheng : make it selectable and able to confirm before user decision (refactored the score)
   # @description: Handles the submission of selected answers for a question and provides feedback.
+  # Edited 07/28/24 by Nicholas Colacarro : Changed output message for when user confirms their choices.
   # @updates: Sets flash messages for correct or incorrect answers, tracks scores.
   # @params: [Array<String>] :selected_choices - Array of selected choices.
   #          [Integer] :question_id - ID of the question.
@@ -114,11 +115,13 @@ class StudyController < ApplicationController
     incorrect_choices = @question.incorrect_choices.map(&:option)
 
     if (selected_choices - correct_choices).empty? && (correct_choices - selected_choices).empty?
-      flash[:correct] = "Correct! #{selected_choices.join(', ')} are the right answers."
+      choice_word = selected_choices.size == 1 ? "is" : "are"
+      flash[:correct] = "Correct! #{selected_choices.join(', ')} #{choice_word} the right answer#{'s' if selected_choices.size > 1}."
       session[:score] ||= 0
       session[:score] += 1
     else
-      flash[:incorrect] = "Incorrect! #{selected_choices.join(', ')} are not the right answers."
+      choice_word = selected_choices.size == 1 ? "is" : "are"
+      flash[:incorrect] = "Incorrect! #{selected_choices.join(', ')} #{choice_word} not the right answer#{'s' if selected_choices.size > 1}."
     end
 
     quiz_id = @question.quiz_id

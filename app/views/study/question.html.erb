@@ -9,7 +9,7 @@
 <div class="study-container">
  <!-- Timer -->
   <div id="timer" class="text-center mb-3">
-    <h2>Time Remaining: <span id="time">1:00</span></h2>
+    <h2>Time Remaining is <span id="time">1:00</span></h2>
   </div>
   <div class="question-box">
 <h1>Question <%= @question_index %> of <%= @total_questions %></h1>
@@ -76,19 +76,6 @@
        
          }
     }, 1000);
-    $('.answer-form').on('submit', function(event) {
-      event.preventDefault();
-      $('input[type="submit"]').prop('disabled', true);
-      var formData = $(this).serializeArray();
-      var selectedChoice = formData.find(field => field.name === 'selected_choice').value;
-      var choiceCorrect = $(this).find('input[name="question_id"]').data('choiceCorrect') === true;
-
-      var $submitButton = $(this).find('input[type="submit"]');
-      $submitButton.toggleClass('correct', choiceCorrect);
-      $submitButton.toggleClass('incorrect', !choiceCorrect);
-      
-      
-    });
   });
 </script>
 

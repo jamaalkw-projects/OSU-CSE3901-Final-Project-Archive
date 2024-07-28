@@ -1,0 +1,43 @@
+=begin
+  study_controller_test.rb - Project 6
+  Created 07/23/24 by Nicholas Colacarro
+=end
+
+# StudyController Tests
+
+Test #1 - Displaying a Question
+- Verified that when visiting the page for a specific question in a quiz, the question content and choices are displayed correctly.
+- Status: Passed
+
+Test #2 - Submitting Correct Choices
+- Tested submitting the form with the correct answer selected.
+- Confirmed that the flash message indicates the correct choice was selected.
+- Status: Passed
+
+Test #3 - Handling Single Choice in Flash Message
+- Ensured that if only one choice is selected, the flash message uses "is" instead of "are" for correct and incorrect responses.
+- Status: Passed
+
+Test #4 - Navigating to Next Question
+- Verified that clicking the "Next" button correctly redirects to the next question or ends the quiz if it is the last question.
+- Status: Passed
+
+Test #5 - Navigating to Previous Question
+- Confirmed that clicking the "Previous" button correctly redirects to the previous question or back to the quiz overview if it is the first question.
+- Status: Passed
+
+Test #6 - End of Quiz Handling
+- Tested the behavior when the quiz is ended, ensuring the session state is reset appropriately and the end quiz page is displayed.
+- Status: Passed
+
+Test #7 - Answer Tracking
+- Verified that answering questions updates the session state with answered questions and adjusts scores correctly.
+- Status: Passed
+
+Test #8 - Submtting Incorrect Choices
+- Checked that the flash message for incorrect answers is correctly displayed when wrong choices are selected.
+- Status: Passed
+
+Test #9 - User Sign-In and Score Updates
+- Confirmed that scores are updated for signed-in users and that their progress is tracked correctly.
+- Status: Passed
