@@ -122,10 +122,15 @@ class StudyController < ApplicationController
     end
 
     quiz_id = @question.quiz_id
-    @score = Scoreboard.find_or_create_by(quiz_id: quiz_id, user_id: current_user.id)
-    @score.answered += 1
-    @score.answered_correct += 1 if (selected_choices - correct_choices).empty? && (correct_choices - selected_choices).empty?
-    @score.save
+    if user_signed_in?
+      @score = Scoreboard.find_by(quiz_id: quiz_id, user_id: current_user.id)
+      if @score
+        @score.answered += 1
+        @score.answered_correct += 1 if (selected_choices - correct_choices).empty? && (correct_choices - selected_choices).empty?
+        @score.save  
+      end    
+    end
+    
 
     # Check to see if question has already been answered.
     answered_questions = session[:answered_questions] || []

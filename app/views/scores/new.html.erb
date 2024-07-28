@@ -1,5 +1,12 @@
-<!-- Created 07/26/24 by Samuel Colston -->
+<!--
+  Created on 07/26/24 by Samuel Colston
+  @description: View for a user to begin tracking their score for the current quiz.
+  @updates: n/a.
+  @params: :quiz_id - Quizzes table's primary key.
+  @returns n/a. -->
 <h1>You currently are not tracking accuracy for the quiz: <%= @quiz.quiz_name %></h1>
+<!-- Contains an empty form to access the route to create a row in the scoreboards table.
+  Form is empty because the row is filled with default values in the controller. -->
 <%= form_for @score, url: quiz_scores_path(@quiz) do |f| %>
   <%= f.submit 'Start Tracking', class: 'btn btn-primary' %>
 <% end %>

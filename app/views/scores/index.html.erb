@@ -1,24 +1,31 @@
-<!-- Created 07/26/24 by Samuel Colston -->
+<!--
+  Created on 07/26/24 by Samuel Colston
+  @description: View for all scores for the current quiz. 
+  @updates: n/a.
+  @params: :quiz_id - Quizzes table's primary key, :user_id - Users table's primary key.
+  @returns n/a. -->
 <h1>Scores</h1>
+<!-- If there are any scores for the given quiz, each username will fill the first column and the accuracy
+    for the current quiz will fill the second column. Otherwise, reports that there are no scores. -->
 <% if @scores.length != 0 %>
-<table>
-    <tr>
-        <td>User:</td>
-        <td>Accuracy:</td>
-    </tr>
-    <% @scores.each do |score| %>
-    <tr>
-        <td><%= @users.find_by(id: score.user_id)&.username || 'Unknown' %></td>
-        <td>
-        <% if score.answered == 0 %>
-            <%= "Not Yet Studied" %>
-        <% else %>
-            <%= (score.answered_correct.to_f / score.answered.to_f * 100).round(2) %>%
+    <table>
+        <tr>
+            <td>User:</td>
+            <td>Accuracy:</td>
+        </tr>
+        <% @scores.each do |score| %>
+        <tr>
+            <td><%= @users.find_by(id: score.user_id)&.username || 'Unknown' %></td>
+            <td>
+            <% if score.answered == 0 %>
+                <%= "Not Yet Studied" %>
+            <% else %>
+                <%= (score.answered_correct.to_f / score.answered.to_f * 100).round(2) %>%
+            <% end %>
+            </td>
+        </tr>
         <% end %>
-        </td>
-    </tr>
-    <% end %>
-</table>
+    </table>
 <% else %>
   <p>No scores have been tracked yet.</p>
 <% end %>

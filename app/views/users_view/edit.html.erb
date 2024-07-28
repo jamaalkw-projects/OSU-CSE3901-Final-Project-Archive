@@ -1,6 +1,11 @@
-<%# Edited 07/22/2024 by Samuel Colston: Created to edit selective elements or delete account.%>
+<!--
+  Created on 07/22/24 by Samuel Colston
+  @description: Custom view replaces Devise default registration edit view. Views forms to update users table.
+  @updates: @user - replaces @user.username.
+  @params: :quiz_id - Quizzes table's primary key.
+  @returns n/a. -->
 <h2>Edit User</h2>
-
+<%# Provides a form to enter a new username for the current user. %>
 <%= form_with(model: @user, url: user_edit_path(@user), local: true, method: :put) do |f| %>
   <div class="field">
     <%= f.label :username %><br />
