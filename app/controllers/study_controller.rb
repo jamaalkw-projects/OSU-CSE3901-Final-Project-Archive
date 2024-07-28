@@ -6,6 +6,7 @@
   Edited 07/23/24 by Nicholas Colacarro: Removed score.
   Edited 07/26/24 by Nicholas Colacarro: Got rid of submit_answer to be completed in the view with JavaScript.
   Edited 07/27/24 by Nicholas Colacarro: Update the study mode when new choices are added to the questions.
+   Edited 07/27/24 by Hengkai Zheng : make it selectable and able to confirm before user decision  in study mode
 =end
 
 class StudyController < ApplicationController
@@ -98,8 +99,8 @@ class StudyController < ApplicationController
 
  # Created 07/24/24 by Nick Colacarro
   # Edited 07/27/24 by Sameul Colston : add track score
-  # Edited 07/27/24 by Hengkai Zheng : make it selectable and able to confirm before user decision
-  # @description: Handles the submission of selected answers for a question and provides feedback. (refactored the score)
+  # Edited 07/27/24 by Hengkai Zheng : make it selectable and able to confirm before user decision (refactored the score)
+  # @description: Handles the submission of selected answers for a question and provides feedback.
   # @updates: Sets flash messages for correct or incorrect answers, tracks scores.
   # @params: [Array<String>] :selected_choices - Array of selected choices.
   #          [Integer] :question_id - ID of the question.
