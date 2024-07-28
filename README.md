@@ -7,6 +7,7 @@ and study them--alone or with others. Users will be able to create and share qui
 them in a single-player studying mode, and a multi-player timed competition mode.
 ## Managers
 - Jamaal Wairegi: Testing Manager
+- Nicholas Colacarro: Documentation Manager
 ## Use Cases and routes
 - Account Creation
     - Users will be able to create an account with a username, email, and password
@@ -57,27 +58,47 @@ them in a single-player studying mode, and a multi-player timed competition mode
 15. Back to Quiz Info
 16. End Game
 ## Sprint #1 - Due Friday, July 19th
-Jamaal Wairegi:
-- Create a route for joining a game–taking in a given link or code and taking the user from the join game page to the host game page. If a user is not signed in, they will be given a random name (implemented as a navbar search form).
-- Create a controller and routes for viewing user information (UserView controller).
-- Initially implemented a route for the landing page, which included logging in, signing up, and joining games, but moved those links to the navbar.
-Sirojiddin Aripov :
--   Work on the Homepage and Quiz Creating Environment.
--   Start work on Host Game page and
-
--   Route from Homepage to Quiz Creation, Quiz Creation back to HomePage. Work with peers to route Host Game.
-
--   Start setting up the Quiz Creating Environment.
-
--   The environment for user to type in the name of a quiz
-
--   And add as many questions to the quiz as they'd like
-
--   Start implementing the Quiz Table to store the Quiz, until the questions table is implemented will only save the quiz name for now.
+Jamaal Wairegi - Create a route for joining a game–taking in a given link or code and taking the user from the join game page to the host game page. If a user is not signed in, they will be given a random name (implemented as a navbar search form). Create a controller and routes for viewing user information (UserView controller). Initially implemented a route for the landing page, which included logging in, signing up, and joining games, but moved those links to the navbar.\
+Sirojiddin Aripov - Work on the Homepage and Quiz Creating Environment. Start work on Host Game page. Route from Homepage to Quiz Creation, Quiz Creation back to HomePage. Work with peers to route Host Game. Start setting up the Quiz Creating Environment. The environment for user to type in the name of a quiz and add as many questions to the quiz as they'd like. Start implementing the Quiz Table to store the Quiz, until the questions table is implemented will only save the quiz name for now.\
+Nicholas Colacarro - Work on creating the question and quiz end views. Also create the routes for them. Create the quiz information controller, view, and routes. Create the study controller.view and routes so that the user can study the quizzes they added. 
 ## Sprint #2 - Due Thursday, July 25th
-Jamaal Wairegi:
-- Create Incorrect Answers table, RESTful routes, and give it an association with the Questions table
-- Style HTML pages for UserView controller
-## Sprint #3
-## ... continute with more sprints
+Jamaal Wairegi - Create Incorrect Answers table, RESTful routes, and give it an association with the Questions table. Style HTML pages for UserView controller \
+Nicholas Colacarro - Work on creating a study controller and get rid of the quiz information controller. Create the CorrectChoice model and implement the routes, controller, and views to work with creating questions within quizzes. Finish of the actual studying playthrough. Work on styling and how it tracks the user's choices.\
+## Sprint #3 - Due Sunday, July 28th
+Nicholas Colacarro - Work out any bugs with the study mode and add any extra functionality that we want. Fix bugs that choices will reshuffle when user clicks an answer and have choices be added properly if a user leaves the study mode to add another question/choice to the quiz.
 ## Team Contributions
+### Nicholas Colacarro
+- Created/implemented routes for correct choices and studying.
+- Created model for correct choices and migration for it.
+  - correct_choices.rb
+- Created views for correct_choices
+  - _form.html.erb
+  - index.html.erb
+  - new.html.erb
+- Created views for questions
+  - edit.html.erb
+  - show.html.erb
+- Created views for study
+  - end.html.erb
+  - question.html.erb
+  - show.html.erb
+- Created study_controller.rb and actions/methods:
+  - show
+  - question
+  - next_question
+  - previous_question
+  - submit_answer
+  - end
+- Created correct_choices_controller.rb and actions/methods:
+  - index
+  - new
+  - create
+  - update
+  - destroy
+  - Private methods: set_question, set_correct_choice, and correct_choice_params
+- Added actions/methods to questions_controller.rb:
+  - show
+  - edit
+
+## Lecture Content
+
