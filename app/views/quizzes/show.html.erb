@@ -16,6 +16,7 @@
     <% @quiz.questions.each do |question| %>
       <li><%= question.content %>
       <%= link_to 'Edit', edit_quiz_question_path(@quiz, question), class: 'btn btn-secondary' %>
+      <%= button_to "Remove", quiz_question_path(@quiz, question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%>
       </li>
     <% end %>
   </ol>

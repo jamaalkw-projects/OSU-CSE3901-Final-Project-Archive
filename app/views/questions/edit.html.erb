@@ -53,4 +53,5 @@
 
 <%= link_to('Add Correct Choice', new_quiz_question_correct_choice_path(@quiz, @question), class: 'btn btn-secondary') if (@correct_choices != nil) and (@correct_choices.length < 10) %>
 <%= link_to('Add Incorrect Choice', new_quiz_question_incorrect_choice_path(@quiz, @question), class: 'btn btn-secondary') if (@incorrect_choices != nil) and (@incorrect_choices.length < 10) %>
+<%= button_to "Delete Question", quiz_question_path(@quiz, @question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%>
 <%= link_to 'Back to Quiz', quiz_path(@quiz), class: 'btn btn-secondary' %>

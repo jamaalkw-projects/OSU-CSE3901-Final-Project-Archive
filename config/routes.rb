@@ -17,7 +17,7 @@ Rails.application.routes.draw do
         post 'join'
       end
     end
-    resources :questions, only: [:new, :create, :show, :index, :edit, :update] do
+    resources :questions, only: [:new, :create, :show, :index, :edit, :update, :destroy] do
       resources :correct_choices, only: [:new, :create, :update, :destroy]
       resources :incorrect_choices, only: [:new, :create, :update, :destroy]
     end

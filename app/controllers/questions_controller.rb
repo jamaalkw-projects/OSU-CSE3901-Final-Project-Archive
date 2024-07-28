@@ -47,6 +47,15 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    quiz = Quiz.find(params[:quiz_id])
+    question = quiz.questions.find(params[:id])
+    if question.present?
+      question.destroy
+    end
+    redirect_to quiz_path(quiz), notice: 'Question deleted.'
+  end
+
   private
 
   def question_params
