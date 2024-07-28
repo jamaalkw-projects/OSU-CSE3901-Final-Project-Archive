@@ -35,6 +35,14 @@
     <%= link_to("Start Live Session", new_quiz_room_path(@quiz), class: "d-inline btn btn-info text-white") if owns_quiz %>
     <%= link_to("See Live Sessions", quiz_rooms_path(@quiz), class: "d-inline btn btn-info text-white") %>
     <%= link_to 'Study', study_quiz_path(@first_question.quiz_id), class: 'btn btn-primary' %>
+  <%= link_to 'View Scores', quiz_scores_path(@quiz), class: 'btn btn-primary' %>
+  <% if user_signed_in? %>
+    <% if @score %>
+      <%= link_to 'View My Score', quiz_score_path(@quiz, @score), class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to 'View My Score', new_quiz_score_path(@quiz), class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
   <% end %>
 <% else %>
   <p>No questions available to study.</p>

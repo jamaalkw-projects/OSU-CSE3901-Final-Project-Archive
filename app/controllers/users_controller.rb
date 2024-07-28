@@ -7,12 +7,10 @@
 # Created 07/20/24 by Hengkai Zheng
 #   Created 'search' action. This action search the user by its username
 class UsersController < ApplicationController
-  def search
-    if params[:query].present?
-      @users = User.where('username LIKE ?', "%#{params[:query]}%")
-    else
-      @users = User.none
-    end
+
+
+  def edit
+    @user = User.find(params[:id])
   end
 
   # Created 07/22/24 by Samuel Colston
@@ -28,6 +26,7 @@ class UsersController < ApplicationController
     else
       Rails.logger.debug(@user.errors.full_messages)
       flash[:error] = @user.errors.full_messages.to_sentence
+      redirect_to :edit
     end
   end
 

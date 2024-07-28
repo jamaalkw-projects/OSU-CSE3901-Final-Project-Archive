@@ -1,0 +1,14 @@
+<!-- Created 07/26/24 by Samuel Colston -->
+<h1>You currently are not tracking accuracy for the quiz: <%= @quiz.quiz_name %></h1>
+<%= form_for @score, url: quiz_scores_path(@quiz) do |f| %>
+  <%= f.submit 'Start Tracking', class: 'btn btn-primary' %>
+<% end %>
+<% if flash[:error].present? %>
+  <div class="error-message">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+
+
+
