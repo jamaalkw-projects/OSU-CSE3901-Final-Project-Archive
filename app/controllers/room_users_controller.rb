@@ -9,8 +9,12 @@ class RoomUsersController < ApplicationController
   def join
     @room = Room.find(params[:id])
     if !@room.room_users.exists?(user_id: current_user.id)
-      @room_user = @room.room_users.new(user_id: current_user.id, room_id: @room.id, score: 0, username: current_user.username)
-
+      @room_user = @room.room_users.new(
+        user_id: current_user.id,
+        room_id: @room.id,
+        score: 0,
+        username: current_user.username
+      )
       if @room_user.save
         redirect_to quiz_room_path(@room.quiz, @room)
       else

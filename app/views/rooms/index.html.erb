@@ -1,7 +1,9 @@
+<!--Created by Sirojiddin Aripov 07/25/24-->
+<!--Shows all current live sessions for the specific quiz-->
 <% owns_quiz = (user_signed_in?) && (@quiz.user_id == current_user.id) %>
-
 <% @rooms.each do |room| %>
   <div id="<%= room.id %>">
     <%= link_to room.room_number, quiz_room_path(room.quiz, room), class: 'btn btn-secondary'%>
   </div>
 <% end %>
+

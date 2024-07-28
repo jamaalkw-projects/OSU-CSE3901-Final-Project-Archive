@@ -42,7 +42,6 @@
     <orderEntry type="library" scope="PROVIDED" name="net-pop (v0.1.2, ruby-3.3.1-p55) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.16.6, ruby-3.3.1-p55) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="psych (v5.1.2, ruby-3.3.1-p55) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="public_suffix (v6.0.0, ruby-3.3.1-p55) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="racc (v1.8.0, ruby-3.3.1-p55) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.11.2, ruby-3.3.1-p55) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.11.1, ruby-3.3.1-p55) [gem]" level="application" />
