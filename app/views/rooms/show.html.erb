@@ -1,3 +1,4 @@
+<!--Created by Sirojiddin Aripov 07/26/24 this should monitor the newly joined user and render without reloading-->
 <h1><%= Quiz.find(params[:quiz_id]).quiz_name %></h1>
 
 <p>Join Code: <%= @room.room_number %></p>
@@ -7,6 +8,7 @@
 <div id="room_users">
   <%= render partial: "room_users/room_user", collection: @room.room_users %>
 </div>
+
 <% if !@room.users.include?(current_user) and user_signed_in? %>
   <%= button_to 'Join Room', join_quiz_room_user_path(@room.quiz, @room), method: :post %>
 <% end %>
