@@ -13,6 +13,7 @@ Users can also play through other users' quizzes by searching for them and playi
 ## Managers
 - Jamaal Wairegi: Testing Manager
 - Nicholas Colacarro: Documentation Manager
+- Sirojiddin Aripov: Implementation Manager
 ## Use Cases and routes
 - Account Creation
     - Users will be able to create an account with a username, email, and password
@@ -103,7 +104,8 @@ Jamaal Wairegi - Create Incorrect Answers table, RESTful routes, and give it an 
 Nicholas Colacarro - Work on creating a study controller and get rid of the quiz information controller. Create the CorrectChoice model and implement the routes, controller, and views to work with creating questions within quizzes. Finish of the actual studying playthrough. Work on styling and how it tracks the user's choices.\
 ## Sprint #3 - Due Sunday, July 28th
 Jamaall Wairegi - Add constraints to amount of choices that can be made for questions, Add user authorization for playing through quizzes. \
-Nicholas Colacarro - Work out any bugs with the study mode and add any extra functionality that we want. Fix bugs that choices will reshuffle when user clicks an answer and have choices be added properly if a user leaves the study mode to add another question/choice to the quiz.
+Nicholas Colacarro - Work out any bugs with the study mode and add any extra functionality that we want. Fix bugs that choices will reshuffle when user clicks an answer and have choices be added properly if a user leaves the study mode to add another question/choice to the quiz.\
+Sirojiddin Aripov - continue research on turbo and updating UI without prompting user. Establish connection with server through application connector. Test if it's working in quiz rooms, update joined users on front end without prompting reload.
 ## Team Contributions
 ### Nicholas Colacarro
 - Created/implemented routes for correct choices and studying.
@@ -152,6 +154,19 @@ Nicholas Colacarro - Work out any bugs with the study mode and add any extra fun
 - Join code input field in header
 - Yielding of errors in correct and incorrect choices creation
 - Display of questions and users on home page
+### Sirojiddin Aripov
+- Home Page
+  - index 
+- Quizzes
+  - CRUD operations with Rails
+  - Associated quizzes with users. Quizzes belong to Users AKA User has many Quizzes
+- Rooms
+  - Create, Read operations for rooms
+  - Associated Rooms with Quizzes, Quiz has many rooms
+- RoomUser
+  - Create operation for RoomUser
+  - Associated Many to Many relationship between rooms and Users.
+    - Aka Many Users can create and join many rooms
 ## Lecture Content
 - RESTful Routes
 - Embedded Ruby Code and HTML
