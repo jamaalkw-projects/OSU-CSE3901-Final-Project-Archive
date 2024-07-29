@@ -1,10 +1,15 @@
 # Project-6-Rupees-to-Rubies
 
 ## Execution Instructions
+To use our web application, simple go to the repository in the terminal, run `bundle install` to install
+any necessary gems from the Gemfile, run `bundle update` in order to update if necessary, then run
+`rails server`, after which open up a browser of your choice and go to the url "http://127.0.0.1:3000/".
 ## Description
 QuizGem is a web application that will allow users to create their own tests for certain subjects
-and study them--alone or with others. Users will be able to create and share quizzes and go through
-them in a single-player studying mode, and a multi-player timed competition mode.
+and study them--alone or with others. Users will be able to create accounts, create quizzes and play through
+them in a single-player studying mode. They are able to track their score for a quiz and can open up rooms for
+live sessions to play with others.
+Users can also play through other users' quizzes by searching for them and playing through them.
 ## Managers
 - Jamaal Wairegi: Testing Manager
 - Nicholas Colacarro: Documentation Manager
@@ -41,22 +46,54 @@ them in a single-player studying mode, and a multi-player timed competition mode
         - If the user gets the question incorrect it will be saved to a different list that will be questions that the user should go back and redo to study more.
     - The user will also have the option to skip a question and go back to the previous question.
 ## Routes
-1. Account Created
-2. Sign Up
-3. Join via Code/Link
-4. Start Game
-5. Log In
-6. Profile
-7. Search User
-8. Create a quiz
-9. Select Quiz
-10. Select User
-11. Study
-12. Host
-13. Next Question
-14. Review Incorrect
-15. Back to Quiz Info
-16. End Game
+1. Users Routes
+  - Index
+  - View
+  - New (Sign Up)
+  - Create
+  - Edit (Edit Profile)
+  - Update
+  - Destroy
+  - Logging in and forgetting password
+2. Home page
+  - Index
+  - Search Page
+3. Quiz
+  - Index
+  - Show
+  - New
+  - Create
+  - Edit
+  - Update
+  - Delete
+4. Question
+  - Index
+  - Show
+  - New
+  - Create
+  - Edit
+  - Update
+  - Delete
+5. Correct and Incorrect Choices
+  - Index
+  - Update
+  - Delete
+  - New
+  - Create
+6. Study
+  - Showing questions
+  - Navigating back and forth between questions
+  - Ending the quiz
+7. Hosting Live sessions
+  - Join room
+  - Set quiz
+  - Create room
+8. Scoreboard
+  - Index
+  - Show
+  - New 
+  - Create
+  - Destroy
 ## Sprint #1 - Due Friday, July 19th
 Jamaal Wairegi - Create a route for joining a game–taking in a given link or code and taking the user from the join game page to the host game page. If a user is not signed in, they will be given a random name (implemented as a navbar search form). Create a controller and routes for viewing user information (UserView controller). Initially implemented a route for the landing page, which included logging in, signing up, and joining games, but moved those links to the navbar.\
 Sirojiddin Aripov - Work on the Homepage and Quiz Creating Environment. Start work on Host Game page. Route from Homepage to Quiz Creation, Quiz Creation back to HomePage. Work with peers to route Host Game. Start setting up the Quiz Creating Environment. The environment for user to type in the name of a quiz and add as many questions to the quiz as they'd like. Start implementing the Quiz Table to store the Quiz, until the questions table is implemented will only save the quiz name for now.\
@@ -109,7 +146,7 @@ Nicholas Colacarro - Work out any bugs with the study mode and add any extra fun
   - Destroy
 - Implementing updating of correct and incorrect choices
 - User authorizations for certain actions
-- UsersView controller (view for Users)
+- Users controller (view for Users)
   - Index
   - Show
 - Join code input field in header
