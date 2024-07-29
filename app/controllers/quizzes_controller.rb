@@ -70,8 +70,7 @@ class QuizzesController < ApplicationController
 =end
   def create
     @quiz = Quiz.new(quiz_params)
-    quiz_valid = @quiz.valid?
-    if quiz_valid
+    if @quiz.valid?
       @quiz.save
       redirect_to @quiz
     else

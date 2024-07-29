@@ -62,9 +62,10 @@ Jamaal Wairegi - Create a route for joining a game–taking in a given link or c
 Sirojiddin Aripov - Work on the Homepage and Quiz Creating Environment. Start work on Host Game page. Route from Homepage to Quiz Creation, Quiz Creation back to HomePage. Work with peers to route Host Game. Start setting up the Quiz Creating Environment. The environment for user to type in the name of a quiz and add as many questions to the quiz as they'd like. Start implementing the Quiz Table to store the Quiz, until the questions table is implemented will only save the quiz name for now.\
 Nicholas Colacarro - Work on creating the question and quiz end views. Also create the routes for them. Create the quiz information controller, view, and routes. Create the study controller.view and routes so that the user can study the quizzes they added. 
 ## Sprint #2 - Due Thursday, July 25th
-Jamaal Wairegi - Create Incorrect Answers table, RESTful routes, and give it an association with the Questions table. Style HTML pages for UserView controller \
+Jamaal Wairegi - Create Incorrect Answers table, RESTful routes, and give it an association with the Questions table. Style HTML pages for UserView controller. \
 Nicholas Colacarro - Work on creating a study controller and get rid of the quiz information controller. Create the CorrectChoice model and implement the routes, controller, and views to work with creating questions within quizzes. Finish of the actual studying playthrough. Work on styling and how it tracks the user's choices.\
 ## Sprint #3 - Due Sunday, July 28th
+Jamaall Wairegi - Add constraints to amount of choices that can be made for questions, Add user authorization for playing through quizzes. \
 Nicholas Colacarro - Work out any bugs with the study mode and add any extra functionality that we want. Fix bugs that choices will reshuffle when user clicks an answer and have choices be added properly if a user leaves the study mode to add another question/choice to the quiz.
 ## Team Contributions
 ### Nicholas Colacarro
@@ -99,6 +100,31 @@ Nicholas Colacarro - Work out any bugs with the study mode and add any extra fun
 - Added actions/methods to questions_controller.rb:
   - show
   - edit
-
+### Jamaal Wairegi
+- IncorrectChoices controller, model, and view
+  - Index
+  - New
+  - Create
+  - Update
+  - Destroy
+- Implementing updating of correct and incorrect choices
+- User authorizations for certain actions
+- UsersView controller (view for Users)
+  - Index
+  - Show
+- Join code input field in header
+- Yielding of errors in correct and incorrect choices creation
+- Display of questions and users on home page
 ## Lecture Content
-
+- RESTful Routes
+- Embedded Ruby Code and HTML
+- Rails helper methods and variables
+- Rails terminal commands
+- "render" and "redirect_to"
+- Javascript and DOM
+- Model associations
+  - One-to-many
+  - Many-to-many
+- ".save", ".valid?", and ".errors"
+- Routes
+- Implicit and explicit parameters

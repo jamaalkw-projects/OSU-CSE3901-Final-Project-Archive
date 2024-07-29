@@ -18,10 +18,11 @@ class QuestionsController < ApplicationController
   def create
     @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.build(question_params)
-    if @question.save
+    if @question.valid?
+      @question.save
       redirect_to edit_quiz_question_path(@quiz, @question), notice: 'Question was successfully created. Note that all questions must have at least one correct and one incorrect question to have the entire quiz be playable.'
     else
-      render :new
+      render :new, alert: @question.errors.to_hash
     end
   end
 

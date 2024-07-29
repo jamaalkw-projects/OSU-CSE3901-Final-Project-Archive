@@ -6,7 +6,27 @@
 
 # Created 07/20/24 by Hengkai Zheng
 #   Created 'search' action. This action search the user by its username
+# Edited 07/28/24 by Jamaal Wairegi: Moved actions from UsersView to Users
 class UsersController < ApplicationController
+  # Created 07/20/24 by Jamaal Wairegi
+  # @description: Displays all users
+  # @updates: @users in 'view/users_view/index.html.erb'
+  # @params: N/A
+  # @returns: N/A
+  def index
+    @users = User.all
+  end
+
+  # Created 07/20/24 by Jamaal Wairegi
+  # @description: Displays a specific user and their created quizzes with a given ID
+  # @updates: @users in 'view/users_view/show.html.erb'
+  # @params: 'id' attribute from Users model (received from URL)
+  # @returns: N/A
+  def show
+    @user = User.find(params[:id])
+    @quizzes = Quiz.where(user_id: @user.id)
+  end
+
   def edit
     @user = User.find(params[:id])
   end

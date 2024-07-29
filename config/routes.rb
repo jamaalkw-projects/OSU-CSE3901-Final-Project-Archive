@@ -8,6 +8,7 @@
 # Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes for correct choices for questions.
 # Edited 07/23/24 by Nicholas Colacarro: Edited/Added routes to submit answer and for end of quiz
 # Edited 07/26/24 by Samuel Colston: Added routes to view scoreboards.
+# Edited 07/28/24 by Jamaal Wairegi: Removed UsersView routes
 Rails.application.routes.draw do
   root "home#index"
 
@@ -53,10 +54,10 @@ Rails.application.routes.draw do
   # Users routes, provided by Devise
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  # Users view routes, which use actions from the UsersView controller
-  get "/users", to: "users_view#index"
-  get "/users/:id", to: "users_view#show"
-  get "/users/edit/:id", to: "users_view#edit", as: 'user_edit'
+  # Users viewing and editing routes (from Users controller)
+  get "/users", to: "users#index"
+  get "/users/:id", to: "users#show"
+  get "/users/edit/:id", to: "users#edit", as: 'user_edit'
   put "/users/edit/:id", to: "users#update"
   delete "/users/edit/:id", to: "users#delete"
 end
