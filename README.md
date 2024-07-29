@@ -14,6 +14,7 @@ Users can also play through other users' quizzes by searching for them and playi
 - Jamaal Wairegi: Testing Manager
 - Nicholas Colacarro: Documentation Manager
 - Sirojiddin Aripov: Implementation Manager
+- Samuel Colston: Meeting Manager
 ## Use Cases and routes
 - Account Creation
     - Users will be able to create an account with a username, email, and password
@@ -98,14 +99,17 @@ Users can also play through other users' quizzes by searching for them and playi
 ## Sprint #1 - Due Friday, July 19th
 Jamaal Wairegi - Create a route for joining a game–taking in a given link or code and taking the user from the join game page to the host game page. If a user is not signed in, they will be given a random name (implemented as a navbar search form). Create a controller and routes for viewing user information (UserView controller). Initially implemented a route for the landing page, which included logging in, signing up, and joining games, but moved those links to the navbar.\
 Sirojiddin Aripov - Work on the Homepage and Quiz Creating Environment. Start work on Host Game page. Route from Homepage to Quiz Creation, Quiz Creation back to HomePage. Work with peers to route Host Game. Start setting up the Quiz Creating Environment. The environment for user to type in the name of a quiz and add as many questions to the quiz as they'd like. Start implementing the Quiz Table to store the Quiz, until the questions table is implemented will only save the quiz name for now.\
-Nicholas Colacarro - Work on creating the question and quiz end views. Also create the routes for them. Create the quiz information controller, view, and routes. Create the study controller.view and routes so that the user can study the quizzes they added. 
+Nicholas Colacarro - Work on creating the question and quiz end views. Also create the routes for them. Create the quiz information controller, view, and routes. Create the study controller.view and routes so that the user can study the quizzes they added.\
+Samuel Colston = Create users model and RESTful routes for users using devise. Create view files for setting up and logging in to user accounts.
 ## Sprint #2 - Due Thursday, July 25th
 Jamaal Wairegi - Create Incorrect Answers table, RESTful routes, and give it an association with the Questions table. Style HTML pages for UserView controller. \
 Nicholas Colacarro - Work on creating a study controller and get rid of the quiz information controller. Create the CorrectChoice model and implement the routes, controller, and views to work with creating questions within quizzes. Finish of the actual studying playthrough. Work on styling and how it tracks the user's choices.\
+Samuel Colston - Finish creating views and debugging custom controller code for users updates. Work on creating a scoreboard model to keep track of quiz results across sessions. Create outline of controller code to create rows in the scoreboard.
 ## Sprint #3 - Due Sunday, July 28th
 Jamaall Wairegi - Add constraints to amount of choices that can be made for questions, Add user authorization for playing through quizzes. \
 Nicholas Colacarro - Work out any bugs with the study mode and add any extra functionality that we want. Fix bugs that choices will reshuffle when user clicks an answer and have choices be added properly if a user leaves the study mode to add another question/choice to the quiz.\
-Sirojiddin Aripov - continue research on turbo and updating UI without prompting user. Establish connection with server through application connector. Test if it's working in quiz rooms, update joined users on front end without prompting reload.
+Sirojiddin Aripov - continue research on turbo and updating UI without prompting user. Establish connection with server through application connector. Test if it's working in quiz rooms, update joined users on front end without prompting reload.\
+Samuel Colston - Implement controller code to update the scoreboard model within the study controller. Refine views for looking at personal scores and scoreboard. Finish debugging and improving scores controller actions.
 ## Team Contributions
 ### Nicholas Colacarro
 - Created/implemented routes for correct choices and studying.
@@ -139,6 +143,26 @@ Sirojiddin Aripov - continue research on turbo and updating UI without prompting
 - Added actions/methods to questions_controller.rb:
   - show
   - edit
+### Samuel Colston
+- Used devise to create users model
+- Created custom controller actions for users
+    - update
+    - delete
+    - edit
+- Created custom edit view in users_view/edit.html.erb
+- Linking to registration, log in/out, and profile in _header.html.erb
+- Created scoreboard model.
+    - scoreboard.rb
+- Created ScoresController and actions:
+    - index
+    - show
+    - new
+    - create
+    - destroy
+- Created scores views:
+    - scores/index.html.erb
+    - scores/new.html.erb
+    - scores/show.html.erb
 ### Jamaal Wairegi
 - IncorrectChoices controller, model, and view
   - Index
